@@ -37,11 +37,11 @@ func _on_fullscreen_toggle(pressed: bool) -> void:
 	DisplayServer.window_set_mode(
 	DisplayServer.WINDOW_MODE_FULLSCREEN if pressed else DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _on_any_setting_changed():
+func _on_any_setting_changed(_value = null):
 	SettingManager.save_settings(
-	music_slider.value,
-	sfx_slider.value,
-	fullscreen_check.button_pressed)
+		music_slider.value,
+		sfx_slider.value,
+		fullscreen_check.button_pressed)
 
 func _on_back_button_pressed():
 	$Click.play()
