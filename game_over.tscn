@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://brmdup1rr7u60"]
+
+[ext_resource type="Texture2D" uid="uid://clckybgx1sbxa" path="res://assets/Menu/GameOver.jpg" id="1_8u835"]
+[ext_resource type="Script" uid="uid://cyq5svw3e2auc" path="res://script/game_over.gd" id="1_ftari"]
+[ext_resource type="AudioStream" uid="uid://3modygi6monw" path="res://Sound/GameOver.MP3" id="2_ftari"]
+[ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="3_28vn7"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="4_k2vha"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ftari")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.548963, 0.548963, 0.548963, 1)
+layout_mode = 0
+offset_right = 1163.0
+offset_bottom = 662.0
+texture = ExtResource("1_8u835")
+expand_mode = 1
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ftari")
+volume_db = 10.0
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_28vn7")
+volume_db = 10.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 192.0
+offset_right = 697.0
+offset_bottom = 227.0
+theme_override_fonts/font = ExtResource("4_k2vha")
+theme_override_font_sizes/font_size = 30
+text = "Game Over"
+
+[node name="Again" type="Button" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 252.0
+offset_right = 643.0
+offset_bottom = 301.0
+theme_override_fonts/font = ExtResource("4_k2vha")
+theme_override_font_sizes/font_size = 30
+text = "เล่นอีกครั้ง"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 315.0
+offset_right = 665.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("4_k2vha")
+theme_override_font_sizes/font_size = 30
+text = "กลับสู่เมนูหลัก"
+
+[connection signal="pressed" from="Again" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

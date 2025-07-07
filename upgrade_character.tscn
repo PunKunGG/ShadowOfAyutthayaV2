@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu1thr0dl5aee"]
+
+[ext_resource type="Script" uid="uid://dxyht8d00s0nn" path="res://script/upgrade_character.gd" id="1_r6u17"]
+[ext_resource type="Texture2D" uid="uid://6dvuhhmw46q3" path="res://assets/Menu/LevelSelect.png" id="2_0ffa2"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="3_oe8fi"]
+[ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_0ffa2"]
+
+[node name="UpgradeCharacter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r6u17")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.564962, 0.564962, 0.564962, 1)
+layout_mode = 0
+offset_right = 1159.0
+offset_bottom = 658.0
+texture = ExtResource("2_0ffa2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 315.0
+offset_top = 167.0
+offset_right = 798.0
+offset_bottom = 202.0
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 30
+text = "UPGRADE CHARACTER"
+
+[node name="QTERangeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 381.0
+offset_right = 777.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 20
+text = "QTE ต้องกด : %d - %d คำ ในการสังหารศัตรู"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 289.0
+offset_right = 698.0
+offset_bottom = 341.0
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 20
+text = "Current Level : Lv.1"
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 20
+text = "Score : 24"
+
+[node name="Upgrade" type="Button" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 434.0
+offset_right = 650.0
+offset_bottom = 483.0
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "อัปเกรดตัวละคร"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 497.0
+offset_right = 636.0
+offset_bottom = 546.0
+theme_override_fonts/font = ExtResource("3_oe8fi")
+theme_override_font_sizes/font_size = 30
+text = "กลับสู่เมนูหลัก"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0ffa2")
+volume_db = 10.0
+
+[connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]

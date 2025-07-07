@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv4fb52lykaj2"]
+
+[ext_resource type="Script" uid="uid://c5cpdrc6pmivv" path="res://script/nhom_nha.gd" id="1_yb0y5"]
+[ext_resource type="Texture2D" uid="uid://ceh4x3pvn47rb" path="res://assets/Menu/yaranaika.png" id="2_u6kx7"]
+[ext_resource type="AudioStream" uid="uid://bg4uw8xbexs1f" path="res://Sound/phiicchaa-aimaihwaelw.mp3" id="3_dpqyc"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="4_4u6sh"]
+[ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="5_u6kx7"]
+
+[node name="NhomNha" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yb0y5")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 664.0
+texture = ExtResource("2_u6kx7")
+expand_mode = 1
+
+[node name="Piichaa" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dpqyc")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 180.0
+offset_right = 1067.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("4_4u6sh")
+theme_override_font_sizes/font_size = 50
+text = "ไม่ไหวแล้ว 🥵 😈 โดนพี่จ๋า!"
+
+[node name="replay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 282.0
+offset_right = 630.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("4_4u6sh")
+theme_override_font_sizes/font_size = 50
+text = "เล่นอีกครั้ง"
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 385.0
+offset_right = 665.0
+offset_bottom = 460.0
+theme_override_fonts/font = ExtResource("4_4u6sh")
+theme_override_font_sizes/font_size = 50
+text = "กลับสู่เมนูหลัก"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u6kx7")
+volume_db = 10.0
+
+[connection signal="pressed" from="replay" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_button_pressed"]

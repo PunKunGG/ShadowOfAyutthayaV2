@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqhbjeybk4pv6"]
+
+[ext_resource type="Script" uid="uid://d218sle05dpic" path="res://script/qte_manager.gd" id="1_kqw2l"]
+[ext_resource type="PackedScene" uid="uid://0et17ymvvg1y" path="res://qte_popup.tscn" id="2_bn2rs"]
+
+[node name="QTEManager" type="CanvasLayer"]
+script = ExtResource("1_kqw2l")
+
+[node name="QTEPopup" parent="." instance=ExtResource("2_bn2rs")]

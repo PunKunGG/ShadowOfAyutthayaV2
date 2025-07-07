@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://586by8vi5qo2"]
+
+[ext_resource type="Script" uid="uid://g4gtxtkk5lqw" path="res://script/credit.gd" id="1_2l348"]
+[ext_resource type="Texture2D" uid="uid://bryd7xu6rls16" path="res://assets/Menu/gggggg.png" id="1_5wfih"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_2l348"]
+[ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="3_aokq2"]
+
+[node name="Credit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2l348")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.585062, 0.585062, 0.585062, 1)
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 657.0
+texture = ExtResource("1_5wfih")
+expand_mode = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 568.0
+offset_right = 659.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("2_2l348")
+theme_override_font_sizes/font_size = 30
+text = "กลับสู่เมนูหลัก"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_aokq2")
+volume_db = 10.0
+
+[node name="Gust" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 359.0
+offset_right = 252.0
+offset_bottom = 410.0
+theme_override_fonts/font = ExtResource("2_2l348")
+theme_override_font_sizes/font_size = 20
+text = "Thitiwut 
+Sri-Amonrat"
+horizontal_alignment = 1
+
+[node name="Boat" type="Label" parent="."]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 365.0
+offset_right = 568.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("2_2l348")
+theme_override_font_sizes/font_size = 20
+text = "Ratchaphoom
+Thongdanggg"
+horizontal_alignment = 1
+
+[node name="Pun" type="Label" parent="."]
+layout_mode = 0
+offset_left = 622.0
+offset_top = 366.0
+offset_right = 867.0
+offset_bottom = 417.0
+theme_override_fonts/font = ExtResource("2_2l348")
+theme_override_font_sizes/font_size = 20
+text = "Siwapad
+Phusrion"
+horizontal_alignment = 1
+
+[node name="Wut" type="Label" parent="."]
+layout_mode = 0
+offset_left = 909.0
+offset_top = 365.0
+offset_right = 1154.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("2_2l348")
+theme_override_font_sizes/font_size = 20
+text = "Dr.Wachirawut
+Thamwiset"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
