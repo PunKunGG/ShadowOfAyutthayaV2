@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var target_scene_path := "res://cave_scene.tscn"
-@export var hnomna_chance := 0.15
+@export var hnomna_chance := 0.5
 @export var hnomna_scene_path := "res://nhom_nha.tscn"  # 👈 ฉากจบลับ
 
 @onready var interaction_label := $InteractionLabel

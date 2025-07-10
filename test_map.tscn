@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dss2x3uho5t3w"]
+[gd_scene load_steps=24 format=3 uid="uid://dss2x3uho5t3w"]
 
 [ext_resource type="Texture2D" uid="uid://srmriv6o73rk" path="res://tilemap/spritesheet-tiles-default.png" id="1_4wuf8"]
 [ext_resource type="Texture2D" uid="uid://ddib3o1neqdbv" path="res://tilemap/terrain_grass_block_top_left.PNG" id="1_5354r"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://baqc78luhpsgn" path="res://assets/tools/rope_real.PNG" id="16_khah1"]
 [ext_resource type="Texture2D" uid="uid://b7hwm4l4cfqbp" path="res://assets/tools/stick-removebg-preview.png" id="17_pphbs"]
 [ext_resource type="PackedScene" uid="uid://7x3yfkf22a46" path="res://inventory_ui.tscn" id="18_1ygvo"]
+[ext_resource type="PackedScene" uid="uid://bd4ke0348ct1y" path="res://trap_bush.tscn" id="18_khah1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yobqo"]
 texture = ExtResource("1_5354r")
@@ -5077,3 +5078,8 @@ item_name = "กิ่งไม้"
 item_icon = ExtResource("17_pphbs")
 
 [node name="InventoryUI" parent="." instance=ExtResource("18_1ygvo")]
+
+[node name="TrapBush" parent="." instance=ExtResource("18_khah1")]
+z_index = -1
+position = Vector2(450, -51)
+scale = Vector2(0.07, 0.07)

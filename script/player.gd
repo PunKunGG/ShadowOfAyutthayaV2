@@ -8,7 +8,8 @@ extends CharacterBody2D
 @onready var qte_popup = QteManager.QTEPopup
 @onready var anim := $AnimatedSprite2D
 @onready var attack_area := $AttackArea
-@onready var takedown_label := $"TakedownLabel"
+@onready var takedown_label := $TakedownLabel
+@onready var collision_shape := $CollisionShape2D
 
 const FALL_DEATH_Y = 1000.0
 
@@ -43,6 +44,8 @@ func _ready():
 		QteManager.QTEPopup.submitted.connect(_on_qte_result)
 	else:
 		print("❌ QTEPopup ไม่พบใน _ready()")
+		
+	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 
 func _physics_process(delta):
 	if is_dead or is_executing:
@@ -75,12 +78,14 @@ func _physics_process(delta):
 		velocity.y = jump_velocity
 
 	# Animation logic
+	if is_hurt:
+		anim.play("damaged")
+		move_and_slide()
+		return
+	
 	if is_attacking:
 		move_and_slide()
 		return  # อย่าเล่น animation อื่นระหว่างโจมตี
-	
-	if is_hurt:
-		anim.play("damaged")
 	else:
 		if not is_on_floor():
 			if velocity.y < 0:
@@ -109,7 +114,7 @@ func _physics_process(delta):
 		die()
 	
 func _input(event):
-	if event.is_action_pressed("attack") and !is_attacking and is_on_floor():
+	if event.is_action_pressed("attack") and !is_attacking and is_on_floor() and !is_hurt:
 		is_attacking = true
 		anim.play("attack")
 		await get_tree().create_timer(0.15).timeout
@@ -146,6 +151,9 @@ func die():
 	get_tree().change_scene_to_file("res://game_over.tscn")
 
 func _on_animated_sprite_2d_animation_finished():
+	if anim.animation == "damaged":
+		is_hurt = false
+	
 	if anim.animation == "attack":
 		is_attacking = false
 
@@ -209,19 +217,47 @@ func _get_takedown_enemy():
 func toggle_hide():
 	is_hidden = !is_hidden
 	visible = not is_hidden
-
+	print("🌿 ซ่อนตัว:", is_hidden)
+	
 	if is_hidden:
 		is_locked_in_bush = true
-		set_collision_mask_value(2, false)  # ไม่ชนศัตรู
+		set_collision_mask_value(2, false)
+		set_collision_layer_value(1, false)
+		collision_shape.disabled = true
+		
+		# ✅ ส่งสัญญาณให้ศัตรู reset
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			if enemy.player_ref == self:
+				print("🧹 รีเซ็ตศัตรู: ", enemy.name)
+				enemy.player_ref = null
+				enemy.is_chasing = false
+				enemy.player_in_range = null
+				enemy.alerted = false
+			else:
+				print("❌ ไม่ตรง: ", enemy.name, " / player_ref = ", enemy.player_ref)
+
 	else:
 		is_locked_in_bush = false
 		set_collision_mask_value(2, true)
+		set_collision_layer_value(1, true)
+		collision_shape.disabled = false
 
 func cover_takedown(enemies: Array):
 	for enemy in enemies:
-		if enemy.has_method("insta_kill") and not enemy.is_alerted():
-			enemy.insta_kill()
-			break
+		print("🧠 ตรวจศัตรู: ", enemy.name)
+		if not enemy.is_in_group("enemy"):
+			print("⛔ ไม่ใช่ศัตรู")
+			continue
+		if not enemy.has_method("insta_kill"):
+			print("⛔ ไม่มีฟังก์ชัน insta_kill")
+			continue
+		if enemy.is_alerted():
+			print("⚠️ ศัตรู alert อยู่ → ไม่ฆ่า")
+			continue
+
+		print("☠️ ลอบสังหารสำเร็จ: ", enemy.name)
+		enemy.insta_kill()
+		break
 
 func show_takedown_prompt():
 	if takedown_label:
@@ -244,22 +280,22 @@ func receive_damage(amount: int, from_pos: Vector2):
 	if is_dead or is_hurt:
 		return
 
+	# ✅ ยกเลิกการโจมตีทันทีเมื่อโดนตี
+	is_attacking = false
+	is_control_locked = false
+	is_executing = false
+
 	current_hp -= amount
 	is_hurt = true
 	print("โดนโจมตี!! - HP:", current_hp)
 
 	anim.play("damaged")
 
-	# ✅ เริ่ม knockback
 	var knock_dir = (global_position - from_pos).normalized()
 	knock_dir.y = 0
 	knockback_velocity = knock_dir * 300
 	knockback_timer = 0.5
 	is_knockback = true
-
-	# ✅ ตั้ง cooldown ชัดเจน
-	await get_tree().create_timer(0.4).timeout
-	is_hurt = false
 
 	if current_hp <= 0:
 		die()

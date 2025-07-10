@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd4ke0348ct1y"]
+
+[ext_resource type="Script" uid="uid://x1n2wraa0b2" path="res://script/trap_bush.gd" id="1_cvb77"]
+[ext_resource type="Texture2D" uid="uid://kwn22wng5s7" path="res://assets/prop/bush1.PNG" id="2_lcs23"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="3_fo5jb"]
+[ext_resource type="AudioStream" uid="uid://dfphm4rjvcttv" path="res://Sound/tom-scream-02.mp3" id="4_lcs23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki2aw"]
+size = Vector2(2103, 1108)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahiml"]
+radius = 1168.15
+
+[node name="TrapBush" type="Area2D"]
+script = ExtResource("1_cvb77")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lcs23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.5, 171)
+shape = SubResource("RectangleShape2D_ki2aw")
+
+[node name="InteractionLabel" type="Label" parent="."]
+offset_left = -896.0
+offset_top = -864.0
+offset_right = 885.0
+offset_bottom = -689.0
+theme_override_fonts/font = ExtResource("3_fo5jb")
+theme_override_font_sizes/font_size = 150
+text = "Press E for Hide"
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_ahiml")
+
+[node name="scream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lcs23")

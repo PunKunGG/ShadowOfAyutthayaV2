@@ -46,14 +46,14 @@ var qte_answer : String = ""
 
 # คำถาม-คำตอบ QTE
 var qte_questions = [
-	{"question": "___ หลวง", "answer": "ใน"},
-	{"question": "___ โคขุน", "answer": "เข้ม"},
-	{"question": "___ สังหาร", "answer": "ลอบ"},
-	{"question": "___ ดาบ", "answer": "ฟัน"},
-	{"question": "___ กระเฟียด", "answer": "กระฟัด"},
-	{"question": "___ มืด", "answer": "เงา"},
-	{"question": "___ ริมสระ", "answer": "โอ"},
-	{"question": "___ มาแล้วน้อง", "answer": "พี่"},
+	{"question": "___หลวง", "answer": "ใน"},
+	{"question": "___โคขุน", "answer": "เข้ม"},
+	{"question": "___สังหาร", "answer": "ลอบ"},
+	{"question": "___ดาบ", "answer": "ฟัน"},
+	{"question": "___กระเฟียด", "answer": "กระฟัด"},
+	{"question": "___มืด", "answer": "เงา"},
+	{"question": "___ริมสระ", "answer": "โอ"},
+	{"question": "___มาแล้วน้อง", "answer": "พี่"},
 ]
 
 func _ready():
@@ -80,6 +80,9 @@ func _physics_process(delta):
 	if is_dead or is_pointing:
 		return
 	
+	if player_in_range and player_in_range.is_hidden:
+		player_in_range = null  # ✅ ไม่ควรเก็บ player ที่ซ่อนอยู่เป็น target
+	
 	if is_knockback:
 		velocity = knockback_velocity
 		knockback_timer -= delta
@@ -89,11 +92,13 @@ func _physics_process(delta):
 		if is_chasing and player_ref:
 			var direction_to_player = sign(player_ref.global_position.x - global_position.x)
 			direction = direction_to_player
-			velocity.x = direction * speed * 3.0
+			velocity.x = direction * speed * 5.0
 			
 			if player_ref.is_hidden:
+				print("🧟 ศัตรูเลิกไล่ เพราะผู้เล่นหายตัว")
 				is_chasing = false
 				player_ref = null
+				alerted = false  # ✅ สำคัญมาก
 				return
 			
 		else:
@@ -212,6 +217,9 @@ func alert_from_behind():
 	if is_attacking_player:
 		return
 	
+	if takedown_player and takedown_player.is_hidden:
+		return
+	
 	is_attacking_player = true
 	_turn_around()
 	
@@ -280,20 +288,21 @@ func _start_next_qte_round():
 func _on_vision_entered(body):
 	if body.is_in_group("player") and not is_dead:
 		if body.has_method("is_hidden") and body.is_hidden:
-			return
-		
+			print("🙈 ศัตรูเห็น player แต่ player ซ่อนอยู่ → ไม่ alert")
+			return  # ✅ หยุดไม่ให้ชี้หน้า
+
 		if not alerted:
 			alerted = true
 			player_ref = body
 			is_chasing = false
-			is_pointing = true  # ✅ หยุดขยับ
+			is_pointing = true
 			alert_sound.play()
 			sprite.play("point")
 			
 			await sprite.animation_finished
-			is_pointing = false  # ✅ กลับมาเดินต่อ
-
+			is_pointing = false
 			is_chasing = true
+			
 			if not has_played_alert:
 				has_played_alert = true
 
@@ -317,16 +326,15 @@ func _attack_player_direct(target):
 	sprite.play("attack")
 	is_anim_locked = true
 
-	# รอเฉพาะระยะโจมตีตรงกลางอนิเมชัน (เช่น 0.3 วิ)
 	await get_tree().create_timer(0.3).timeout
 	if target and target.is_inside_tree() and target.has_method("receive_damage"):
-		target.receive_damage(1, global_position)
+		if not target.is_hurt and not target.is_hidden:  # ✅ ป้องกันไม่ให้ตีซ้ำตอน player ยัง hurt อยู่
+			target.receive_damage(1, global_position)
 
 	await sprite.animation_finished
 	is_anim_locked = false
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
-
 
 func get_score_reward() -> int:
 	match enemy_type:

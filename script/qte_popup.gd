@@ -31,7 +31,7 @@ func start(question: String, choices: Array, answer: String, target_position: Ve
 
 	for i in range(3):
 		var btn: Button = buttons[i]
-		btn.text = choices[i]
+		btn.text = str(i + 1) + ". " + choices[i]
 		btn.disabled = false
 		btn.modulate = Color.WHITE
 		btn.show()
@@ -67,7 +67,7 @@ func _on_button_pressed(btn: Button):
 	for b in buttons:
 		b.disabled = true
 
-	var selected := btn.text
+	var selected := btn.text.split(". ", false)[1]
 	var is_correct := selected == correct_word
 
 	btn.modulate = (Color.GREEN if is_correct else Color.RED)
@@ -79,3 +79,16 @@ func _on_button_pressed(btn: Button):
 	visible = false
 	get_tree().paused = false
 	submitted.emit(is_correct)
+
+func _input(event):
+	if not visible or not counting:
+		return
+
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_1:
+				_on_button_pressed(buttons[0])
+			KEY_2:
+				_on_button_pressed(buttons[1])
+			KEY_3:
+				_on_button_pressed(buttons[2])
