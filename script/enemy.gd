@@ -10,6 +10,11 @@ signal takedown_success
 @export var enemy_type := "Soldier"
 @export var attack_cooldown := 1.0
 
+@export var is_patrolling := true
+@export var patrol_left := -100
+@export var patrol_right := 100
+var origin_x := 0.0
+
 @onready var sprite := $AnimatedSprite2D
 @onready var dead_sound := $Dead
 @onready var wall_ray := $WallRay
@@ -57,6 +62,16 @@ var qte_questions = [
 ]
 
 func _ready():
+	origin_x = global_position.x
+	
+	# ตั้งทิศเริ่มต้น
+	if is_patrolling:
+		direction = -1        # เริ่มหันซ้ายตามเดิม (หรือ 1 ถ้าจะเริ่มขวา)
+	else:
+		direction = 1         # พวกยืนนิ่งหันขวาเท่านั้น
+
+	_apply_direction_offsets()
+	
 	qte_popup = QteManager.QTEPopup
 	if not qte_popup:
 		push_error("❌ QTEPopup ไม่พร้อมใช้งาน!")
@@ -102,13 +117,13 @@ func _physics_process(delta):
 				return
 			
 		else:
-			if is_idle:
+			if is_idle or not is_patrolling:
 				velocity.x = 0
 			else:
 				if is_attacking_player:
 					velocity.x = 0
 					return
-				
+
 				if randi() % 500 == 0 and is_on_floor() and idle_timer.is_stopped():
 					is_idle = true
 					idle_timer.start()
@@ -119,6 +134,13 @@ func _physics_process(delta):
 
 				if not floor_ray.is_colliding():
 					_turn_around()
+
+				if global_position.x < origin_x + patrol_left:
+					direction = 1
+					_apply_direction_offsets()
+				elif global_position.x > origin_x + patrol_right:
+					direction = -1
+					_apply_direction_offsets()
 
 				velocity.x = direction * speed
 	
@@ -132,21 +154,16 @@ func _physics_process(delta):
 	_update_animation()
 
 func _turn_around():
-	if is_chasing:
+	if is_chasing or not is_patrolling:
 		return
-		
 	direction *= -1
-	
-	vision_area.position.x = abs(vision_area.position.x) * direction
-	attack_area.position.x = abs(attack_area.position.x) * direction
-	wall_ray.target_position.x = abs(wall_ray.target_position.x) * direction
-	floor_ray.target_position.x = abs(floor_ray.target_position.x) * direction
-	sprite.flip_h = direction > 0
-	back_stab_area.position.x = -abs(back_stab_area.position.x) * direction
+	_apply_direction_offsets()
 
 func _update_animation():
 	if is_anim_locked:
 		return  # ❌ ห้ามเปลี่ยนอนิเมชัน ถ้าล็อกไว้
+	
+	sprite.flip_h = direction > 0
 	
 	if velocity.x != 0:
 		sprite.play("walk")  # หรือ "walk" ถ้ามี
@@ -335,6 +352,15 @@ func _attack_player_direct(target):
 	is_anim_locked = false
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+
+func _apply_direction_offsets():
+	vision_area.position.x   = abs(vision_area.position.x)   * direction
+	attack_area.position.x   = abs(attack_area.position.x)   * direction
+	wall_ray.target_position.x  = abs(wall_ray.target_position.x)  * direction
+	floor_ray.target_position.x = abs(floor_ray.target_position.x) * direction
+	back_stab_area.position.x   = -abs(back_stab_area.position.x) * direction
+	sprite.flip_h = direction > 0   # ซิงก์ทิศ sprite
+
 
 func get_score_reward() -> int:
 	match enemy_type:

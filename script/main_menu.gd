@@ -10,7 +10,7 @@ func _on_start_button_pressed():
 	MusicManager.stop_music()
 	$Click.play()
 	await get_tree().create_timer(0.3).timeout
-	get_tree().change_scene_to_file("res://test_map.tscn")
+	get_tree().change_scene_to_file("res://level_1.tscn")
 
 func _on_setting_button_pressed():
 	$Click.play()

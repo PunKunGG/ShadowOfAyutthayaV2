@@ -11,6 +11,7 @@ anchors_preset = 0
 script = ExtResource("1_jpg2l")
 
 [node name="QuestionLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 39.0
 offset_right = 184.0
@@ -20,10 +21,11 @@ theme_override_font_sizes/font_size = 20
 text = "____ สังหาร"
 
 [node name="OptionContainer" type="HBoxContainer" parent="."]
-offset_left = 100.0
-offset_top = 70.0
-offset_right = 140.0
-offset_bottom = 110.0
+layout_mode = 0
+offset_left = 16.0
+offset_top = 69.0
+offset_right = 56.0
+offset_bottom = 109.0
 
 [node name="Button1" type="Button" parent="OptionContainer"]
 layout_mode = 2
@@ -41,6 +43,7 @@ theme_override_fonts/font = ExtResource("1_bub5b")
 theme_override_font_sizes/font_size = 20
 
 [node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 6.0
 offset_top = 8.0
 offset_right = 239.0

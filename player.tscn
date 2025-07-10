@@ -774,10 +774,6 @@ position = Vector2(-11, -22.5)
 scale = Vector2(15, 15)
 shape = SubResource("RectangleShape2D_hqtel")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(229, -28)
-zoom = Vector2(1.5, 1.5)
-
 [node name="jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_n7ghd")
 volume_db = -25.0

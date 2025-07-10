@@ -24,6 +24,10 @@ PlayerStat="*res://script/player_stat.gd"
 Inventory="*res://script/inventory.gd"
 QteManager="*res://script/qte_manager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 attack={
