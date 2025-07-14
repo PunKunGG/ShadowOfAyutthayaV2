@@ -11,55 +11,119 @@
 scroll_ignore_camera_zoom = true
 
 [node name="Layer1" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer1"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer1"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("1_mbtn4")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer1"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("1_mbtn4")
+stretch_mode = 4
+flip_v = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Layer2" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer2"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer2"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("2_36f2d")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer2"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("2_36f2d")
+stretch_mode = 4
+flip_v = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Layer3" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer3"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer3"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("3_vj07k")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer3"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("3_vj07k")
+stretch_mode = 4
+flip_v = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Layer4" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer4"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer4"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("4_byhde")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer4"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("4_byhde")
+stretch_mode = 4
+flip_v = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Layer5" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer5"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer5"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("5_v8ubb")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer5"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("5_v8ubb")
+stretch_mode = 4
+flip_v = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Layer6" type="ParallaxLayer" parent="."]
-position = Vector2(0, -115)
-motion_offset = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1000, 0)
+position = Vector2(0, -430)
+motion_mirroring = Vector2(1100, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Layer6"]
-position = Vector2(0, -150)
+[node name="Sprite2D" type="TextureRect" parent="Layer6"]
+offset_top = -150.0
+offset_bottom = -150.0
 texture = ExtResource("6_tbsne")
+stretch_mode = 4
+
+[node name="Sprite2D2" type="TextureRect" parent="Layer6"]
+offset_top = -796.0
+offset_right = 1152.0
+offset_bottom = -148.0
+texture = ExtResource("6_tbsne")
+stretch_mode = 4
+flip_v = true

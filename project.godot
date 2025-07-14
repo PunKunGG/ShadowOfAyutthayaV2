@@ -23,6 +23,7 @@ SettingManager="*res://script/setting_manager.gd"
 PlayerStat="*res://script/player_stat.gd"
 Inventory="*res://script/inventory.gd"
 QteManager="*res://script/qte_manager.gd"
+TutorialManager="*res://script/TutorialManager.gd"
 
 [display]
 

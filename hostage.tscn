@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://clsu65tj14i17"]
+
+[ext_resource type="Texture2D" uid="uid://bp12hrljwgp2u" path="res://assets/hostage/hsotage-removebg-preview.png" id="1_2cphn"]
+[ext_resource type="Script" uid="uid://cfkqvrw331hft" path="res://script/hostage.gd" id="1_plpu0"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_plpu0"]
+[ext_resource type="AudioStream" uid="uid://b1uxlipvgwpy8" path="res://Sound/the-weeknd-rizzz.mp3" id="4_woyju"]
+[ext_resource type="AudioStream" uid="uid://baixwms6cgio1" path="res://Sound/rescue-me.mp3" id="5_ovy40"]
+[ext_resource type="AudioStream" uid="uid://d0sgyfo8nkdmr" path="res://Sound/rizz-walk.mp3" id="6_u145w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgpst"]
+
+[node name="Hostage" type="Area2D"]
+script = ExtResource("1_plpu0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2cphn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_xgpst")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -195.0
+offset_top = -193.0
+offset_right = 196.0
+offset_bottom = -158.0
+theme_override_fonts/font = ExtResource("2_plpu0")
+theme_override_font_sizes/font_size = 30
+text = "Hold E for Rescue"
+
+[node name="RescueLoopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_woyju")
+volume_db = -15.0
+parameters/looping = true
+
+[node name="RescueMe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ovy40")
+volume_db = -10.0
+
+[node name="RescueCom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_u145w")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

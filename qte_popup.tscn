@@ -10,6 +10,13 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_jpg2l")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.277528, 0.277528, 0.277528, 1)
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 116.0
+color = Color(1, 1, 1, 0.352941)
+
 [node name="QuestionLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 57.0

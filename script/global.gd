@@ -9,6 +9,19 @@ var enemy_kill := {
 	"boss": 0,
 }
 
+var unlocked_levels := {
+	"Prologue": false,
+	"Level1": false,
+	"Level2": false,
+	"Level3": false,
+	"Level4": false,
+	"Level5": false
+}
+
+func unlock_level(_name: String):
+	if _name in unlocked_levels:
+		unlocked_levels[_name] = true
+
 func add_score(amout: int) -> void:
 	total_score += amout
 	

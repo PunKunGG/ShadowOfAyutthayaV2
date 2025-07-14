@@ -71,8 +71,20 @@ theme_override_fonts/font = ExtResource("2_fu7sn")
 theme_override_font_sizes/font_size = 30
 text = "อัปเกรดตัวละคร"
 
+[node name="HTP" type="Button" parent="."]
+layout_mode = 0
+offset_left = 932.0
+offset_top = 528.0
+offset_right = 1118.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 20
+text = "How To Play
+"
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Credit" to="." method="_on_credit_button_pressed"]
 [connection signal="pressed" from="Test" to="." method="_on_test_pressed"]
+[connection signal="pressed" from="HTP" to="." method="_on_htp_pressed"]

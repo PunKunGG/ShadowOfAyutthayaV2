@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn00c8eg72ki6"]
+
+[ext_resource type="Script" uid="uid://cbgyjgepio704" path="res://script/requirement_action_point.gd" id="1_wgww3"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_r6mf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0172y"]
+
+[node name="RequirementActionPoint" type="Area2D"]
+script = ExtResource("1_wgww3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_0172y")
+
+[node name="RequirementMessage" type="Label" parent="."]
+offset_left = -221.0
+offset_top = -94.0
+offset_right = 262.0
+offset_bottom = -21.0
+theme_override_fonts/font = ExtResource("2_r6mf1")
+theme_override_font_sizes/font_size = 30
+text = "Requirement : Rope"
+autowrap_mode = 2

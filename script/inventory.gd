@@ -1,20 +1,31 @@
 extends Node
 
-var items: Dictionary = {}
+var items := {
+	"Rope": {"amount": 0, "consumable": false, "description": "ใช้สำหรับปีนต้นไม้หรือปีนที่สูง"},
+	"Ladder": {"amount": 0, "consumable": false, "description": "บันไดไม้ ใช้สำหรับข้ามสิ่งกีดขวาง"},
+	"Axe": {"amount": 0, "consumable": false, "description": "ขวาน ใช้ตัดต้นไม้หรือกำแพงบางจุด"},
+	"Bottle": {"amount": 0, "consumable": true, "description": "ขวดเปล่า ใช้โยนล่อศัตรู"},
+	"AshPowder": {"amount": 0, "consumable": true, "description": "ผงขี้เถ้า ใช้ดับคบเพลิงเพื่อสร้างทางมืด"}
+}
 
-func add_item(item_name: String, amount := 1):
+func add_item(item_name: String, count := 1):
 	if items.has(item_name):
-		items[item_name] += amount
+		items[item_name]["amount"] += count
 	else:
-		items[item_name] = amount
-	
-	print("🎒 ได้: ", item_name, " จำนวน ", items[item_name])
+		push_error("❌ Item not recognized: " + item_name)
 
 func has_item(item_name: String) -> bool:
-	return items.has(item_name) and items[item_name] > 0
+	return items.has(item_name) and items[item_name]["amount"] > 0
 
-func remove_item(item_name: String, amount := 1):
-	if has_item(item_name):
-		items[item_name] -= amount
-		if items[item_name] <= 0:
-			items.erase(item_name)
+func use_item(item_name: String) -> bool:
+	if not has_item(item_name):
+		return false
+
+	if items[item_name]["consumable"]:
+		items[item_name]["amount"] -= 1
+	return true
+
+func get_item_amount(item_name: String) -> int:
+	if items.has(item_name):
+		return items[item_name]["amount"]
+	return 0

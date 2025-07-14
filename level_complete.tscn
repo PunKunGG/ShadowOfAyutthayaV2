@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://qlupxbcsm2cc"]
+
+[ext_resource type="Script" uid="uid://57ebp44ogw2u" path="res://script/level_complete.gd" id="1_8xmsg"]
+[ext_resource type="Texture2D" uid="uid://bue00sgj0dt8r" path="res://assets/Menu/Complete.png" id="2_63p37"]
+[ext_resource type="AudioStream" uid="uid://cx0g3m3jjjgbo" path="res://Sound/tarkov-quest-complete.mp3" id="3_2lq25"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="4_pl60b"]
+[ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="5_1ib01"]
+
+[node name="LevelComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8xmsg")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.29219, 0.29219, 0.29219, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_63p37")
+
+[node name="Complete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2lq25")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 158.0
+offset_right = 728.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("4_pl60b")
+theme_override_font_sizes/font_size = 50
+text = "ผ่านด่าน เก่งมาก"
+
+[node name="select" type="Button" parent="."]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 261.0
+offset_right = 706.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("4_pl60b")
+theme_override_font_sizes/font_size = 50
+text = "เลือกด่านต่อไป"
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 367.0
+offset_right = 702.0
+offset_bottom = 442.0
+theme_override_fonts/font = ExtResource("4_pl60b")
+theme_override_font_sizes/font_size = 50
+text = "กลับสู่เมนูหลัก"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1ib01")
+volume_db = 10.0
+
+[connection signal="pressed" from="select" to="." method="_on_Select_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_Back_pressed"]

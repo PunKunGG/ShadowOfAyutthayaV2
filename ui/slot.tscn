@@ -20,3 +20,10 @@ theme_override_fonts/font = ExtResource("2_q3y4y")
 theme_override_font_sizes/font_size = 15
 text = "0"
 horizontal_alignment = 1
+
+[node name="TooltipLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3y4y")
+theme_override_font_sizes/font_size = 15
+text = "Test123"
+autowrap_mode = 3

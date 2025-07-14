@@ -28,25 +28,46 @@ func update_inventory_display():
 		child.queue_free()
 
 	for item_name in Inventory.items.keys():
-		var amount = Inventory.items[item_name]
+		var item_data = Inventory.items[item_name]
+		var amount = item_data["amount"]
 		
-		var slot = slot_scene.instantiate()
-		var texture_rect = slot.get_node("TextureRect")
-		var label = slot.get_node("Label")
-		
-		texture_rect.texture = get_icon_for_item(item_name)
-		label.text = "%s x%d" % [item_name, amount]
+		if amount > 0:
+			add_item_slot(item_name)
 
-		item_list.add_child(slot)
+func add_item_slot(item_name: String):
+	var data = Inventory.items[item_name]
+	var amount = data["amount"]
+	var description = data["description"]
+
+	var slot = slot_scene.instantiate()
+	var texture_rect = slot.get_node("TextureRect")
+	var label = slot.get_node("Label")
+	var tooltip_label = slot.get_node("TooltipLabel")
+
+	texture_rect.texture = get_icon_for_item(item_name)
+	label.text = "%s x%d" % [item_name, amount]
+	tooltip_label.text = description
+	tooltip_label.visible = false  # เริ่มซ่อนไว้
+
+	# Mouse enter/exit
+	slot.mouse_entered.connect(func():
+		tooltip_label.visible = true
+	)
+	slot.mouse_exited.connect(func():
+		tooltip_label.visible = false
+	)
+
+	item_list.add_child(slot)
+
 
 func get_icon_for_item(_name: String) -> Texture2D:
 	# 👇 ใส่ logic ให้โหลด icon ตามชื่อ หรือใช้ preload dictionary
 	match _name:
-		"ขวาน":
+		"Axe":
 			return preload("res://assets/tools/axe_real.PNG")
-		"เชือก":
+		"Rope":
 			return preload("res://assets/tools/rope_real.PNG")
-		"กิ่งไม้":
+		"Stick":
 			return preload("res://assets/tools/stick-removebg-preview.png")
 		_:
 			return null

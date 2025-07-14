@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://jtw13unb6k78"]
+
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="1_dcutc"]
+[ext_resource type="Script" uid="uid://d3md3ra4u726y" path="res://script/exfiltration_zone.gd" id="1_eikhw"]
+[ext_resource type="AudioStream" uid="uid://d0sgyfo8nkdmr" path="res://Sound/rizz-walk.mp3" id="2_eikhw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hggbj"]
+
+[node name="ExfiltrationZone" type="Area2D"]
+script = ExtResource("1_eikhw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -135.0
+offset_top = -179.0
+offset_right = 169.0
+offset_bottom = -138.0
+theme_override_fonts/font = ExtResource("1_dcutc")
+theme_override_font_sizes/font_size = 30
+text = "กำลังออกจากพื้นที่...0.0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_hggbj")
+
+[node name="RizzWalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eikhw")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

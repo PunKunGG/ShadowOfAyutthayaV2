@@ -185,6 +185,9 @@ func take_damage(amount: int, attacker_position: Vector2):
 func die():
 	is_dead = true
 	print(">>> DIE CALLED")
+	
+	_disable_collisions()
+	
 	sprite.play("dead")
 	print(">>> PLAYED ANIM: ", sprite.animation)
 	dead_sound.play()
@@ -220,7 +223,9 @@ func insta_kill():
 	print(">>> insta_kill called")
 
 	emit_signal("takedown_success")
-
+	
+	_disable_collisions()
+	
 	sprite.play("dead")
 	await sprite.animation_finished  # ✅ รออนิเมชันจบจริง
 
@@ -361,6 +366,12 @@ func _apply_direction_offsets():
 	back_stab_area.position.x   = -abs(back_stab_area.position.x) * direction
 	sprite.flip_h = direction > 0   # ซิงก์ทิศ sprite
 
+func _disable_collisions():
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+		elif child.has_method("set_disabled"):
+			child.set_disabled(true)
 
 func get_score_reward() -> int:
 	match enemy_type:

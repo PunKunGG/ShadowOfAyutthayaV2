@@ -22,6 +22,7 @@ var is_dead = false
 var is_attacking = false
 var is_control_locked := false
 var is_hidden := false
+var is_landing := false
 var is_locked_in_bush := false
 var original_attack_x: float
 var takedown_enemy = null
@@ -48,6 +49,8 @@ func _ready():
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 
 func _physics_process(delta):
+	var was_on_floor = is_on_floor()
+	
 	if is_dead or is_executing:
 		return
 
@@ -87,12 +90,20 @@ func _physics_process(delta):
 		move_and_slide()
 		return  # อย่าเล่น animation อื่นระหว่างโจมตี
 	else:
+		if is_landing:
+			return  # 🔒 ล็อกไว้ไม่ให้อนิเมชันอื่นเล่นทับ
+
 		if not is_on_floor():
 			if velocity.y < 0:
-				$jump.play()
-				anim.play("jump")
+				if anim.animation != "jump":
+					$jump.play()
+					anim.play("jump")
 			else:
-				anim.play("fall")
+				if anim.animation != "fall":
+					anim.play("fall")
+		elif not was_on_floor and is_on_floor():
+			is_landing = true
+			anim.play("contact_floor")
 		elif direction != 0:
 			anim.play("walk")
 		else:
@@ -166,10 +177,17 @@ func _on_animated_sprite_2d_animation_finished():
 		else:
 			anim.play("fall")
 	
-	if anim.animation == "execute" or anim.animation == "prepare":
+	if anim.animation == "execute_hand" or anim.animation == "prepare":
 		if not is_on_floor():
 			anim.play("fall")
 		elif velocity.x == 0:
+			anim.play("idle")
+		else:
+			anim.play("walk")
+	
+	if anim.animation == "contact_floor":
+		is_landing = false
+		if velocity.x == 0:
 			anim.play("idle")
 		else:
 			anim.play("walk")
@@ -192,8 +210,8 @@ func _on_takedown_complete():
 	if current_takedown_target:
 		current_takedown_target.insta_kill()  # ⚡ ตายทันที
 
-	anim.play("execute")
-	await wait_for_animation("execute")
+	anim.play("execute_hand")
+	await wait_for_animation("execute_hand")
 
 	is_control_locked = false
 	is_executing = false
@@ -288,7 +306,8 @@ func receive_damage(amount: int, from_pos: Vector2):
 	current_hp -= amount
 	is_hurt = true
 	print("โดนโจมตี!! - HP:", current_hp)
-
+	
+	$hurt.play()
 	anim.play("damaged")
 
 	var knock_dir = (global_position - from_pos).normalized()
