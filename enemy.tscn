@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ckx5s1lircfn1"]
+[gd_scene load_steps=87 format=3 uid="uid://ckx5s1lircfn1"]
 
 [ext_resource type="Script" uid="uid://b4725nk37cxdw" path="res://script/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://cl4gmc4mchx35" path="res://assets/enemy/V2/EnemyAttack.png" id="2_wujgv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d35sorvjhqi1o" path="res://assets/enemy/V2/EnemyIdle_2.png" id="4_wujgv"]
 [ext_resource type="Texture2D" uid="uid://b522h0axw2313" path="res://assets/enemy/V2/EnemiesWalkRE.png" id="5_hb8ge"]
 [ext_resource type="AudioStream" uid="uid://oaxnsmpv4wso" path="res://Sound/shanks-haki.mp3" id="6_3yqyl"]
+[ext_resource type="AudioStream" uid="uid://ccu8qiudcvbem" path="res://Sound/MaiHen.MP3" id="8_hb8ge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3onx"]
 atlas = ExtResource("2_wujgv")
@@ -566,9 +567,7 @@ script = ExtResource("1_4gyqm")
 position = Vector2(-49, -58)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_27j8q")
-animation = &"dead"
-frame = 14
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="WallRay" type="RayCast2D" parent="."]
 position = Vector2(67, 0)
@@ -608,3 +607,7 @@ position = Vector2(-287, -233)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("RectangleShape2D_3yqyl")
+
+[node name="YouCanSeeMe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hb8ge")
+volume_db = 10.0

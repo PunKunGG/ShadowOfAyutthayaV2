@@ -98,18 +98,28 @@ func _physics_process(delta):
 	if player_in_range and player_in_range.is_hidden:
 		player_in_range = null  # ✅ ไม่ควรเก็บ player ที่ซ่อนอยู่เป็น target
 	
+	if is_chasing and not player_ref:
+		print("❗ player_ref หายไปกลางทาง → ยกเลิกไล่")
+		is_chasing = false
+		alerted = false
+
+	
 	if is_knockback:
 		velocity = knockback_velocity
 		knockback_timer -= delta
 		if knockback_timer <= 0:
 			is_knockback = false
 	else:
-		if is_chasing and player_ref:
-			var direction_to_player = sign(player_ref.global_position.x - global_position.x)
-			direction = direction_to_player
-			velocity.x = direction * speed * 5.0
+		if is_chasing:
+			if player_ref:
+				var direction_to_player = sign(player_ref.global_position.x - global_position.x)
+				direction = direction_to_player
+				velocity.x = direction * speed * 5.0
+			else:
+				# ไล่ลมไปทิศที่ได้ยินเสียงสักพัก
+				velocity.x = direction * speed * 3.0
 			
-			if player_ref.is_hidden:
+			if player_ref and player_ref.is_hidden:
 				print("🧟 ศัตรูเลิกไล่ เพราะผู้เล่นหายตัว")
 				is_chasing = false
 				player_ref = null
@@ -318,7 +328,8 @@ func _on_vision_entered(body):
 			player_ref = body
 			is_chasing = false
 			is_pointing = true
-			alert_sound.play()
+			#alert_sound.play()
+			$YouCanSeeMe.play()
 			sprite.play("point")
 			
 			await sprite.animation_finished
@@ -330,6 +341,7 @@ func _on_vision_entered(body):
 
 func _on_vision_exited(body):
 	if body == player_ref:
+		print("👁️ ผู้เล่นออกจากระยะเห็น")
 		is_chasing = false
 		player_ref = null
 		has_played_alert = false
@@ -357,6 +369,22 @@ func _attack_player_direct(target):
 	is_anim_locked = false
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+
+func hear_sound_from(position: Vector2):
+	if is_dead or is_chasing or is_pointing:
+		return
+	if not alerted:
+		alerted = true
+		is_pointing = true
+		direction = sign(position.x - global_position.x)
+		_apply_direction_offsets()
+		sprite.play("point")  # แสดงท่าหันไปหาเสียง
+
+		await sprite.animation_finished  # รออนิเมชันชี้จบ
+
+		is_pointing = false
+		is_chasing = true
+		player_ref = null  # ยังไล่ไม่ได้จนกว่าจะเห็น player
 
 func _apply_direction_offsets():
 	vision_area.position.x   = abs(vision_area.position.x)   * direction

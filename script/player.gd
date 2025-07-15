@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
+signal  sound_alert_triggered(enemy: Node)
+
 @export var speed := 250
+@export var run_speed := 400
 @export var jump_velocity := -650
 @export var gravity := 1200
 @export var attack_damage := 1
@@ -10,8 +13,15 @@ extends CharacterBody2D
 @onready var attack_area := $AttackArea
 @onready var takedown_label := $TakedownLabel
 @onready var collision_shape := $CollisionShape2D
+@onready var sound_area := $SoundArea
+@onready var sound_shape := $SoundArea/CollisionShape2D
+@onready var footstep_walk := $FootstepWalk
+@onready var footstep_run := $FootstepRun
 
 const FALL_DEATH_Y = 1000.0
+
+#Run
+var is_running := false
 
 #Health
 var max_hp := 3
@@ -40,6 +50,9 @@ var knockback_timer := 0.0
 
 func _ready():
 	original_attack_x = attack_area.position.x
+	
+	sound_area.body_entered.connect(_on_sound_area_entered)
+	sound_alert_triggered.connect(func(enemy): enemy.hear_sound_from(global_position))
 	
 	if QteManager.QTEPopup:
 		QteManager.QTEPopup.submitted.connect(_on_qte_result)
@@ -73,9 +86,30 @@ func _physics_process(delta):
 	# Get input
 	var direction := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
+	is_running = Input.is_action_pressed("run")
+	var move_speed = run_speed if is_running else speed
+	
 	if not is_knockback:
-		velocity.x = direction * speed
-
+		velocity.x = direction * move_speed
+	
+	# ปรับระยะตรวจจับเสียงตามสถานะวิ่ง
+	if direction != 0:
+		sound_area.monitoring = true
+		sound_shape.shape.radius = 400.0 if is_running else 120.0
+		
+		if is_running:
+			if not footstep_run.playing:
+				footstep_walk.stop()
+				footstep_run.play()
+		else:
+			if not footstep_walk.playing:
+				footstep_run.stop()
+				footstep_walk.play()
+		
+	else:
+		sound_area.monitoring = false
+		footstep_walk.stop()
+		footstep_run.stop()
 	# Jump
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_velocity
@@ -154,6 +188,10 @@ func _attack():
 		if body.is_in_group("enemy"):
 			if body.has_method("take_damage"):
 				body.take_damage(attack_damage, global_position)
+
+func _on_sound_area_entered(body):
+	if body.is_in_group("enemy") and not body.is_alerted():
+		emit_signal("sound_alert_triggered", body)
 
 func die():
 	is_dead = true

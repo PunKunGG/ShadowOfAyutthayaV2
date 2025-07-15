@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=3 uid="uid://0w05xcojxswa"]
+[gd_scene load_steps=159 format=3 uid="uid://0w05xcojxswa"]
 
 [ext_resource type="Script" uid="uid://qx64p0kse4b" path="res://script/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dvxpvi7omgneq" path="res://assets/player/playerV2/AttackCombo.png" id="2_ivps1"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://ctr1txtavhpx4" path="res://Sound/maro-jump-sound-effect_1.mp3" id="10_n7ghd"]
 [ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="11_nvl01"]
 [ext_resource type="AudioStream" uid="uid://cl2f4dtdcie5q" path="res://Sound/GodOfFun.MP3" id="12_ivps1"]
+[ext_resource type="AudioStream" uid="uid://d4kffi5mvx8od" path="res://Sound/walk_footstep.mp3" id="13_bwjto"]
+[ext_resource type="AudioStream" uid="uid://drssjvr4xlb47" path="res://Sound/run_footstep.mp3" id="14_606se"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u1c27"]
 atlas = ExtResource("2_ivps1")
@@ -1058,6 +1060,9 @@ size = Vector2(12.5333, 21.6667)
 radius = 57.0
 height = 364.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivps1"]
+radius = 125.036
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_sweqy")
@@ -1071,7 +1076,6 @@ animation = &"idle"
 frame_progress = 0.0369258
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
 limit_left = -600
 limit_bottom = 70
 
@@ -1103,5 +1107,21 @@ text = "Press F for Takedown"
 [node name="hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_ivps1")
 volume_db = -10.0
+
+[node name="SoundArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundArea"]
+shape = SubResource("CircleShape2D_ivps1")
+debug_color = Color(0, 0.643897, 0.291432, 0.42)
+
+[node name="FootstepWalk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_bwjto")
+volume_db = 5.0
+parameters/looping = true
+
+[node name="FootstepRun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_606se")
+volume_db = 5.0
+parameters/looping = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

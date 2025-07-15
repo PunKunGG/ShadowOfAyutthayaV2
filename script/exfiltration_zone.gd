@@ -1,7 +1,8 @@
 extends Area2D
 
 @export var countdown_time := 3.0
-@export var next_scene: String = "res://nhom_nha.tscn"
+@export var next_scene: String = "res://level_complete.tscn"
+@export var unlock_level : String = ""
 
 @onready var label := $Label
 @onready var audio := $RizzWalk
@@ -20,6 +21,8 @@ func _process(delta):
 
 		if timer <= 0:
 			audio.stop()
+			if unlock_level != "" and unlock_level in Global.unlocked_levels:
+				Global.unlocked_levels[unlock_level] = true
 			get_tree().change_scene_to_file(next_scene)
 	else:
 		timer = countdown_time
