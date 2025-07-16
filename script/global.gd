@@ -1,5 +1,7 @@
 extends Node
 
+var last_played_scene: String = ""
+
 var total_score := 0
 var enemy_kill := {
 	"soldier": 0,
@@ -10,8 +12,8 @@ var enemy_kill := {
 }
 
 var unlocked_levels := {
-	"Prologue": false,
-	"Level1": false,
+	"Prologue": true,
+	"Level1": true,
 	"Level2": false,
 	"Level3": false,
 	"Level4": false,

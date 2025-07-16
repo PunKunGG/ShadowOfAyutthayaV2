@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://f1dfs5u5nr0u"]
+[gd_scene load_steps=6 format=3 uid="uid://f1dfs5u5nr0u"]
 
 [ext_resource type="Texture2D" uid="uid://bm1pv3ti0ctyh" path="res://assets/Menu/MainMenu.png" id="1_a42w7"]
 [ext_resource type="Script" uid="uid://chjapgbey86ti" path="res://script/setting.gd" id="1_twti6"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="3_8cg5j"]
 [ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="3_q554q"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_8cg5j"]
 
@@ -24,12 +25,12 @@ expand_mode = 1
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 475.0
-offset_top = 483.0
-offset_right = 643.0
-offset_bottom = 532.0
-theme_override_fonts/font = ExtResource("3_q554q")
-theme_override_font_sizes/font_size = 30
+offset_left = 448.0
+offset_top = 497.0
+offset_right = 631.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("3_8cg5j")
+theme_override_font_sizes/font_size = 40
 text = "กลับสู่เมนูหลัก"
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
@@ -38,25 +39,26 @@ volume_db = 10.0
 
 [node name="Head" type="Label" parent="."]
 layout_mode = 0
-offset_left = 460.0
-offset_top = 200.0
-offset_right = 646.0
-offset_bottom = 235.0
-theme_override_fonts/font = ExtResource("3_q554q")
-theme_override_font_sizes/font_size = 30
+offset_left = 415.0
+offset_top = 166.0
+offset_right = 683.0
+offset_bottom = 274.0
+theme_override_fonts/font = ExtResource("3_8cg5j")
+theme_override_font_sizes/font_size = 80
 text = "SETTING"
+horizontal_alignment = 1
 
 [node name="MusicVolumn" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 405.0
-offset_top = 267.0
-offset_right = 683.0
-offset_bottom = 327.0
+offset_left = 408.0
+offset_top = 268.0
+offset_right = 686.0
+offset_bottom = 329.0
 
 [node name="Music" type="Label" parent="MusicVolumn"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_q554q")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_8cg5j")
+theme_override_font_sizes/font_size = 30
 text = "Music"
 horizontal_alignment = 1
 
@@ -73,18 +75,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = 8.0
-offset_right = 2.0
-offset_bottom = 52.0
+offset_left = -74.0
+offset_top = 11.0
+offset_right = -3.0
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SFX" type="Label" parent="SFXVolumn"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_q554q")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_8cg5j")
+theme_override_font_sizes/font_size = 30
 text = "SFX"
+horizontal_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="SFXVolumn"]
 layout_mode = 2
@@ -95,15 +98,15 @@ step = 0.01
 
 [node name="Fullscreen" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 387.0
-offset_right = 622.0
-offset_bottom = 427.0
+offset_left = 428.0
+offset_top = 394.0
+offset_right = 605.0
+offset_bottom = 462.0
 
 [node name="Fullscreen" type="Label" parent="Fullscreen"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_q554q")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_8cg5j")
+theme_override_font_sizes/font_size = 50
 text = "Fullscreen"
 
 [node name="CheckBox" type="CheckBox" parent="Fullscreen"]

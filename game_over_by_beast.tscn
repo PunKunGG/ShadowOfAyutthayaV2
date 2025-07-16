@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bwh1ke8iexo2m" path="res://assets/Menu/tripitropatralala.png" id="1_24fwl"]
 [ext_resource type="Script" uid="uid://m0caa3y7i82q" path="res://script/game_over_by_beast.gd" id="1_tr8cf"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_u7x1a"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="3_tr8cf"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_f3j7m"]
 [ext_resource type="AudioStream" uid="uid://3eug8jsr0ws" path="res://Sound/italian-animals.mp3" id="5_b2kqb"]
 
@@ -25,57 +25,55 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 243.0
-offset_right = 1136.0
-offset_bottom = 306.0
-theme_override_fonts/font = ExtResource("2_u7x1a")
-theme_override_font_sizes/font_size = 25
+offset_left = 48.0
+offset_top = 234.0
+offset_right = 1137.0
+offset_bottom = 347.0
+theme_override_fonts/font = ExtResource("3_tr8cf")
+theme_override_font_sizes/font_size = 40
 text = "TRIPA TROPA TRALALA LIRILIRA TUNG TUNG SAHUR BONEKA TUNG TUNG TRALALEO TRIPI TROPA CROCODINA"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 316.0
-offset_top = 127.0
-offset_right = 814.0
-offset_bottom = 186.0
-theme_override_fonts/font = ExtResource("2_u7x1a")
-theme_override_font_sizes/font_size = 50
+offset_left = 432.0
+offset_top = 85.0
+offset_right = 693.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("3_tr8cf")
+theme_override_font_sizes/font_size = 80
 text = "Game Over"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 196.0
-offset_right = 810.0
-offset_bottom = 255.0
-theme_override_fonts/font = ExtResource("2_u7x1a")
-theme_override_font_sizes/font_size = 30
+offset_left = 501.0
+offset_top = 182.0
+offset_right = 619.0
+offset_bottom = 241.0
+theme_override_fonts/font = ExtResource("3_tr8cf")
+theme_override_font_sizes/font_size = 40
 text = "Killed By"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="Again" type="Button" parent="."]
 layout_mode = 0
-offset_left = 494.0
-offset_top = 334.0
-offset_right = 658.0
-offset_bottom = 397.0
-theme_override_fonts/font = ExtResource("2_u7x1a")
+offset_left = 478.0
+offset_top = 373.0
+offset_right = 642.0
+offset_bottom = 436.0
+theme_override_fonts/font = ExtResource("3_tr8cf")
 theme_override_font_sizes/font_size = 40
 text = "เล่นอีกครั้ง"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 465.0
-offset_top = 418.0
-offset_right = 687.0
-offset_bottom = 481.0
-theme_override_fonts/font = ExtResource("2_u7x1a")
+offset_left = 449.0
+offset_top = 457.0
+offset_right = 671.0
+offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("3_tr8cf")
 theme_override_font_sizes/font_size = 40
 text = "กลับสู่เมนูหลัก"
 

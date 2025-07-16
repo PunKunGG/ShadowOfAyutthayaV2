@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv25xl4tg64pu"]
 
 [ext_resource type="Script" uid="uid://wqgn3a273jvu" path="res://script/music_manager.gd" id="1_rjr7q"]
-[ext_resource type="AudioStream" uid="uid://bx23l0x8i5jcb" path="res://Sound/MainMenu.MP3" id="2_bhb8d"]
+[ext_resource type="AudioStream" uid="uid://c3pp3rclfpngt" path="res://Sound/baangracchan-inothl.mp3" id="2_rjr7q"]
 
 [node name="MusicManager" type="Node2D"]
 script = ExtResource("1_rjr7q")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_bhb8d")
-volume_db = -15.0
+stream = ExtResource("2_rjr7q")
+volume_db = -10.0
 autoplay = true
+parameters/looping = true

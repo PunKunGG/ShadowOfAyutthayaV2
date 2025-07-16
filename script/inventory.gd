@@ -5,7 +5,8 @@ var items := {
 	"Ladder": {"amount": 0, "consumable": false, "description": "บันไดไม้ ใช้สำหรับข้ามสิ่งกีดขวาง"},
 	"Axe": {"amount": 0, "consumable": false, "description": "ขวาน ใช้ตัดต้นไม้หรือกำแพงบางจุด"},
 	"Bottle": {"amount": 0, "consumable": true, "description": "ขวดเปล่า ใช้โยนล่อศัตรู"},
-	"AshPowder": {"amount": 0, "consumable": true, "description": "ผงขี้เถ้า ใช้ดับคบเพลิงเพื่อสร้างทางมืด"}
+	"AshPowder": {"amount": 0, "consumable": true, "description": "ผงขี้เถ้า ใช้ดับคบเพลิงเพื่อสร้างทางมืด"},
+	"Stick":{"amount": 0, "consumable": false, "description": "ไม้ตีหัวพ่อง"}
 }
 
 func add_item(item_name: String, count := 1):

@@ -27,12 +27,12 @@ func _on_credit_button_pressed():
 	get_tree().change_scene_to_file("res://credit.tscn")
 
 func _on_test_pressed():
+	MusicManager.stop_music()
 	$Click.play()
 	await get_tree().create_timer(0.3).timeout
 	get_tree().change_scene_to_file("res://upgrade_character.tscn")
 
 func _on_htp_pressed() -> void:
-	MusicManager.stop_music()
 	$Click.play()
 	await get_tree().create_timer(0.3).timeout
 	get_tree().change_scene_to_file("res://how_to_play.tscn")

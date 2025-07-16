@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cyq5svw3e2auc" path="res://script/game_over.gd" id="1_ftari"]
 [ext_resource type="AudioStream" uid="uid://3modygi6monw" path="res://Sound/GameOver.MP3" id="2_ftari"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="3_28vn7"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="4_k2vha"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="5_ftari"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -33,32 +33,33 @@ volume_db = 10.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 457.0
-offset_top = 192.0
-offset_right = 697.0
-offset_bottom = 227.0
-theme_override_fonts/font = ExtResource("4_k2vha")
-theme_override_font_sizes/font_size = 30
+offset_left = 421.0
+offset_top = 87.0
+offset_right = 682.0
+offset_bottom = 195.0
+theme_override_fonts/font = ExtResource("5_ftari")
+theme_override_font_sizes/font_size = 80
 text = "Game Over"
+horizontal_alignment = 1
 
 [node name="Again" type="Button" parent="."]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 252.0
-offset_right = 643.0
-offset_bottom = 301.0
-theme_override_fonts/font = ExtResource("4_k2vha")
-theme_override_font_sizes/font_size = 30
+offset_left = 467.0
+offset_top = 230.0
+offset_right = 637.0
+offset_bottom = 306.0
+theme_override_fonts/font = ExtResource("5_ftari")
+theme_override_font_sizes/font_size = 50
 text = "เล่นอีกครั้ง"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 497.0
-offset_top = 315.0
-offset_right = 665.0
-offset_bottom = 364.0
-theme_override_fonts/font = ExtResource("4_k2vha")
-theme_override_font_sizes/font_size = 30
+offset_left = 440.0
+offset_top = 346.0
+offset_right = 667.0
+offset_bottom = 422.0
+theme_override_fonts/font = ExtResource("5_ftari")
+theme_override_font_sizes/font_size = 50
 text = "กลับสู่เมนูหลัก"
 
 [connection signal="pressed" from="Again" to="." method="_on_again_pressed"]

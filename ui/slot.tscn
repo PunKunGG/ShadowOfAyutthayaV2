@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctpe5fsy0g4st"]
 
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_q3y4y"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="1_mityc"]
 
 [node name="Slot" type="GridContainer"]
 custom_minimum_size = Vector2(16, 16)
@@ -16,14 +16,15 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q3y4y")
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("1_mityc")
+theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
 
 [node name="TooltipLabel" type="Label" parent="."]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q3y4y")
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("1_mityc")
+theme_override_font_sizes/font_size = 20
 text = "Test123"
-autowrap_mode = 3
+horizontal_alignment = 1
+autowrap_mode = 2

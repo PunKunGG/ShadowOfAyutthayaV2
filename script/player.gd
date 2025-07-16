@@ -199,6 +199,10 @@ func _attack():
 		if body.is_in_group("enemy"):
 			if body.has_method("take_damage"):
 				body.take_damage(attack_damage, global_position)
+		
+		elif body.is_in_group("cage"):  # ✅ ตีกรงได้
+			if body.has_method("take_hit"):
+				body.take_hit()
 
 func _on_sound_area_entered(body):
 	if body.is_in_group("enemy") and not body.is_alerted():

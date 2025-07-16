@@ -51,14 +51,16 @@ var qte_answer : String = ""
 
 # คำถาม-คำตอบ QTE
 var qte_questions = [
-	{"question": "___หลวง", "answer": "ใน"},
-	{"question": "___โคขุน", "answer": "เข้ม"},
+	{"question": "___ซ่อน", "answer": "หลบ"},
+	{"question": "___เร้น", "answer": "ซ่อน"},
 	{"question": "___สังหาร", "answer": "ลอบ"},
-	{"question": "___ดาบ", "answer": "ฟัน"},
+	{"question": "___ดาบ", "answer": "ฝัก"},
 	{"question": "___กระเฟียด", "answer": "กระฟัด"},
 	{"question": "___มืด", "answer": "เงา"},
-	{"question": "___ริมสระ", "answer": "โอ"},
-	{"question": "___มาแล้วน้อง", "answer": "พี่"},
+	{"question": "___ลับ", "answer": "ลี้"},
+	{"question": "___มีด", "answer": "คม"},
+	{"question": "___คม", "answer": "อา"},
+	{"question": "___พุทธายะ", "answer": "นะโม"}
 ]
 
 func _ready():
@@ -114,7 +116,7 @@ func _physics_process(delta):
 			if player_ref:
 				var direction_to_player = sign(player_ref.global_position.x - global_position.x)
 				direction = direction_to_player
-				velocity.x = direction * speed * 5.0
+				velocity.x = direction * speed * 8.0
 			else:
 				# ไล่ลมไปทิศที่ได้ยินเสียงสักพัก
 				velocity.x = direction * speed * 3.0
@@ -163,8 +165,8 @@ func _physics_process(delta):
 	move_and_slide()
 	_update_animation()
 
-func _turn_around():
-	if is_chasing or not is_patrolling:
+func _turn_around(force := false):
+	if (is_chasing or not is_patrolling) and not force:
 		return
 	direction *= -1
 	_apply_direction_offsets()
@@ -175,7 +177,9 @@ func _update_animation():
 	
 	sprite.flip_h = direction > 0
 	
-	if velocity.x != 0:
+	if is_chasing:
+		sprite.play("chase")
+	elif velocity.x != 0:
 		sprite.play("walk")  # หรือ "walk" ถ้ามี
 	else:
 		sprite.play("idle")
@@ -191,6 +195,27 @@ func take_damage(amount: int, attacker_position: Vector2):
 		die()
 	else:
 		apply_knockback(attacker_position)
+		_play_hurt_animation(attacker_position)
+
+func _play_hurt_animation(attacker_position: Vector2):
+	if is_anim_locked:
+		return
+
+	if sprite.sprite_frames and "hurt" in sprite.sprite_frames.get_animation_names():
+		is_anim_locked = true
+		$Hurt.play()
+		sprite.play("hurt")
+		await sprite.animation_finished
+		is_anim_locked = false
+		
+		if not is_chasing and not is_pointing:
+			var attacker_dir = sign(attacker_position.x - global_position.x)
+			if attacker_dir != direction:
+				_turn_around(true)
+		
+	else:
+		print("⚠️ ไม่มี animation 'hurt' ใน sprite หรือยังไม่เซ็ต SpriteFrames")
+
 
 func die():
 	is_dead = true

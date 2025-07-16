@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bm1pv3ti0ctyh" path="res://assets/Menu/MainMenu.png" id="1_7vrkn"]
 [ext_resource type="Script" uid="uid://cca3jb6pfkwyp" path="res://script/main_menu.gd" id="1_fu7sn"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_fu7sn"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="3_jix8l"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_glbon"]
 
 [node name="MainMenu" type="Control"]
@@ -31,30 +31,30 @@ offset_bottom = 394.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
 text = "เล่น"
 
 [node name="SettingButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
 text = "การตั้งค่า"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
 text = "ออกจากเกม"
 
 [node name="Credit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 947.0
-offset_top = 574.0
-offset_right = 1091.0
-offset_bottom = 623.0
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 30
+offset_left = 945.0
+offset_top = 556.0
+offset_right = 1089.0
+offset_bottom = 619.0
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
 text = "คณะผู้จัดทำ"
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
@@ -63,24 +63,23 @@ volume_db = 10.0
 
 [node name="Test" type="Button" parent="."]
 layout_mode = 0
-offset_left = 460.0
-offset_top = 428.0
-offset_right = 644.0
-offset_bottom = 477.0
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 30
+offset_left = 462.0
+offset_top = 455.0
+offset_right = 665.0
+offset_bottom = 518.0
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
 text = "อัปเกรดตัวละคร"
 
 [node name="HTP" type="Button" parent="."]
 layout_mode = 0
-offset_left = 932.0
-offset_top = 528.0
-offset_right = 1118.0
-offset_bottom = 560.0
-theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 20
-text = "How To Play
-"
+offset_left = 927.0
+offset_top = 490.0
+offset_right = 1113.0
+offset_bottom = 553.0
+theme_override_fonts/font = ExtResource("3_jix8l")
+theme_override_font_sizes/font_size = 40
+text = "วิธีเล่น"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]

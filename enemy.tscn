@@ -1,13 +1,16 @@
-[gd_scene load_steps=87 format=3 uid="uid://ckx5s1lircfn1"]
+[gd_scene load_steps=101 format=3 uid="uid://ckx5s1lircfn1"]
 
 [ext_resource type="Script" uid="uid://b4725nk37cxdw" path="res://script/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://cl4gmc4mchx35" path="res://assets/enemy/V2/EnemyAttack.png" id="2_wujgv"]
+[ext_resource type="Texture2D" uid="uid://bh2jdkcipa1dl" path="res://assets/enemy/V2/EnemyTakeDamage.png" id="3_e1ltt"]
 [ext_resource type="Texture2D" uid="uid://dn57xkqnl7vqg" path="res://assets/enemy/V2/enemydead.png" id="3_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://bu3igni42rugc" path="res://assets/enemy/V2/EnemyChase.png" id="3_pwjut"]
 [ext_resource type="AudioStream" uid="uid://llakvsobuaav" path="res://Sound/nissan_dead.MP3" id="3_qi2p4"]
 [ext_resource type="Texture2D" uid="uid://d35sorvjhqi1o" path="res://assets/enemy/V2/EnemyIdle_2.png" id="4_wujgv"]
 [ext_resource type="Texture2D" uid="uid://b522h0axw2313" path="res://assets/enemy/V2/EnemiesWalkRE.png" id="5_hb8ge"]
 [ext_resource type="AudioStream" uid="uid://oaxnsmpv4wso" path="res://Sound/shanks-haki.mp3" id="6_3yqyl"]
 [ext_resource type="AudioStream" uid="uid://ccu8qiudcvbem" path="res://Sound/MaiHen.MP3" id="8_hb8ge"]
+[ext_resource type="AudioStream" uid="uid://bil73alqjohtt" path="res://Sound/classic_hurt.mp3" id="10_dxifv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3onx"]
 atlas = ExtResource("2_wujgv")
@@ -73,6 +76,42 @@ region = Rect2(2048, 6144, 2048, 2048)
 atlas = ExtResource("2_wujgv")
 region = Rect2(4096, 6144, 2048, 2048)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqa47"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(0, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akc8q"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(2048, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d3oh"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(4096, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rjsx"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(0, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raesi"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(2048, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nkll"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(4096, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfyl1"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(0, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o838k"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(2048, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtqqc"]
+atlas = ExtResource("3_pwjut")
+region = Rect2(4096, 4096, 2048, 2048)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
 atlas = ExtResource("3_hb8ge")
 region = Rect2(0, 0, 2048, 2048)
@@ -132,6 +171,14 @@ region = Rect2(2048, 6144, 2048, 2048)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3un5y"]
 atlas = ExtResource("3_hb8ge")
 region = Rect2(4096, 6144, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnj4d"]
+atlas = ExtResource("3_e1ltt")
+region = Rect2(0, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uifqy"]
+atlas = ExtResource("3_e1ltt")
+region = Rect2(2048, 0, 2048, 2048)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hb8ge"]
 atlas = ExtResource("4_wujgv")
@@ -358,6 +405,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tqa47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akc8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d3oh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rjsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raesi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nkll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfyl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o838k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtqqc")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wujgv")
 }, {
 "duration": 1.0,
@@ -405,6 +484,17 @@ animations = [{
 "loop": false,
 "name": &"dead",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnj4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uifqy")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -611,3 +701,7 @@ shape = SubResource("RectangleShape2D_3yqyl")
 [node name="YouCanSeeMe" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hb8ge")
 volume_db = 10.0
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_dxifv")
+volume_db = -10.0

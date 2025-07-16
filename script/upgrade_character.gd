@@ -7,6 +7,8 @@ extends Control
 @onready var tween := $Tween
 
 func _ready():
+	$BGSong.play()
+	
 	update_ui()
 	upgrade_button.pressed.connect(_on_upgrade_pressed)
 

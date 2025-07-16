@@ -69,5 +69,7 @@ func get_icon_for_item(_name: String) -> Texture2D:
 			return preload("res://assets/tools/rope_real.PNG")
 		"Stick":
 			return preload("res://assets/tools/stick-removebg-preview.png")
+		"Ladder":
+			return preload("res://assets/tools/ladder.PNG")
 		_:
 			return null

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7x3yfkf22a46"]
 
 [ext_resource type="Script" uid="uid://bdrrweahgstte" path="res://script/inventory_ui.gd" id="1_5v8q7"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_gf3dx"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="2_gf3dx"]
 
 [node name="InventoryUI" type="CanvasLayer"]
 process_mode = 3
@@ -44,10 +44,10 @@ layout_mode = 2
 
 [node name="Inventory" type="Label" parent="."]
 process_mode = 3
-offset_left = 456.0
-offset_top = 154.0
-offset_right = 671.0
-offset_bottom = 189.0
+offset_left = 464.0
+offset_top = 87.0
+offset_right = 693.0
+offset_bottom = 195.0
 theme_override_fonts/font = ExtResource("2_gf3dx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 80
 text = "Inventory"

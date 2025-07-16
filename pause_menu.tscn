@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbobvid322gjc"]
 
 [ext_resource type="Script" uid="uid://o3xn1sgrl4tj" path="res://script/pause_menu.gd" id="1_05uyy"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="2_05uyy"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="3_p81d2"]
 
 [node name="PauseMenu" type="CanvasLayer"]
@@ -31,20 +31,20 @@ grow_vertical = 2
 
 [node name="Resume" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_hdmo1")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_05uyy")
+theme_override_font_sizes/font_size = 50
 text = "กลับเข้าเกม"
 
 [node name="Setting" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_hdmo1")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_05uyy")
+theme_override_font_sizes/font_size = 50
 text = "การตั้งค่า"
 
 [node name="MainMenu" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_hdmo1")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_05uyy")
+theme_override_font_sizes/font_size = 50
 text = "กลับสู่เมนูหลัก"
 
 [node name="Label" type="Label" parent="."]
@@ -53,15 +53,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.0
-offset_top = -137.0
-offset_right = 150.0
-offset_bottom = -102.0
+offset_left = -158.0
+offset_top = -236.0
+offset_right = 163.0
+offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_hdmo1")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_05uyy")
+theme_override_font_sizes/font_size = 80
 text = "Game Paused"
+horizontal_alignment = 1
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_p81d2")

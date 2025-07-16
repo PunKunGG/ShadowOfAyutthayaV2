@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1pdonsknwj87" path="res://script/level_select.gd" id="1_apu6u"]
 [ext_resource type="Texture2D" uid="uid://dhbw4qa68pleg" path="res://assets/Menu/GameComplete.png" id="1_vomi7"]
-[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="2_wevku"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="3_apu6u"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_bv7n5"]
 
 [node name="LevelSelect" type="Control"]
@@ -26,12 +26,12 @@ texture = ExtResource("1_vomi7")
 
 [node name="Head" type="Label" parent="."]
 layout_mode = 0
-offset_left = 454.0
-offset_top = 63.0
-offset_right = 631.0
-offset_bottom = 130.0
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 50
+offset_left = 429.0
+offset_top = 45.0
+offset_right = 654.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 80
 text = "เลือกด่าน"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,48 +45,48 @@ offset_bottom = 464.0
 
 [node name="Button_Prologue" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "บทนำ"
 
 [node name="Button_Level1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "ด่านที่ 1"
 
 [node name="Button_Level2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "ด่านที่ 2"
 
 [node name="Button_Level3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "ด่านที่ 3"
 
 [node name="Button_Level4" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "ด่านที่ 4"
 
 [node name="Button_Level5" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "ด่านที่ 5"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 455.0
-offset_top = 494.0
-offset_right = 623.0
-offset_bottom = 543.0
-theme_override_fonts/font = ExtResource("2_wevku")
-theme_override_font_sizes/font_size = 30
+offset_left = 453.0
+offset_top = 527.0
+offset_right = 621.0
+offset_bottom = 582.0
+theme_override_fonts/font = ExtResource("3_apu6u")
+theme_override_font_sizes/font_size = 35
 text = "กลับสู่เมนูหลัก"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]

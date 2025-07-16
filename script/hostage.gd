@@ -19,6 +19,11 @@ var has_started_rescue := false
 
 func _ready():
 	label.visible = false
+	
+	var cage = $PrisonCage
+	if cage:
+		cage.cage_destroyed.connect(_on_cage_destroyed)
+		set_process(false)  # ❌ ปิด _process จนกว่ากรงจะพัง
 
 func _process(delta):
 	if is_rescued or not player_in_range:
@@ -54,7 +59,7 @@ func complete_rescue():
 	label.text = "✅ Rescued!!"
 	
 	rescue_loop_sound.stop()
-	
+	rizz.play()
 	#Random Items
 	var items = ["Rope", "Axe"]
 	var item = items[randi() % items.size()]
@@ -68,6 +73,10 @@ func complete_rescue():
 	
 	await get_tree().create_timer(2.0).timeout
 	queue_free()
+
+func _on_cage_destroyed():
+	print("🆓 กรงพัง → ตัวประกันรอการช่วย")
+	set_process(true)
 
 func _on_body_entered(body):
 	if body.name == "Player":

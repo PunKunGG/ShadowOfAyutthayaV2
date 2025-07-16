@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://gpoq6is4a6wj"]
+[gd_scene load_steps=26 format=3 uid="uid://gpoq6is4a6wj"]
 
 [ext_resource type="Script" uid="uid://ctiinyt7gq360" path="res://script/prologue.gd" id="1_01crl"]
 [ext_resource type="Texture2D" uid="uid://ddib3o1neqdbv" path="res://tilemap/terrain_grass_block_top_left.PNG" id="1_mx85p"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bd4ke0348ct1y" path="res://trap_bush.tscn" id="13_pfcga"]
 [ext_resource type="PackedScene" uid="uid://j4jeu2sgwsgu" path="res://item.tscn" id="14_otm4a"]
 [ext_resource type="Texture2D" uid="uid://baqc78luhpsgn" path="res://assets/tools/rope_real.PNG" id="15_5c4eg"]
-[ext_resource type="Texture2D" uid="uid://d1jfbg23uvxyu" path="res://assets/tools/axe_real.PNG" id="16_7xrtd"]
 [ext_resource type="Texture2D" uid="uid://b7hwm4l4cfqbp" path="res://assets/tools/stick-removebg-preview.png" id="17_fy513"]
 [ext_resource type="PackedScene" uid="uid://ckx5s1lircfn1" path="res://enemy.tscn" id="18_5c4eg"]
 [ext_resource type="PackedScene" uid="uid://yogap3ahmaoo" path="res://tree_top_area.tscn" id="19_7xrtd"]
@@ -100,7 +99,7 @@ layer_0/tile_data = PackedInt32Array(131057, 196609, 3, 196593, 196609, 3, 65521
 [node name="InventoryUI" parent="." instance=ExtResource("5_6hioj")]
 
 [node name="Player" parent="." instance=ExtResource("6_rwpj4")]
-position = Vector2(-231, -100)
+position = Vector2(-276, -99)
 scale = Vector2(0.5, 0.5)
 speed = 200
 run_speed = 350
@@ -540,14 +539,14 @@ scale = Vector2(0.2, 0.2)
 item_name = "Rope"
 item_icon = ExtResource("15_5c4eg")
 
-[node name="AxeItem" parent="." instance=ExtResource("14_otm4a")]
-position = Vector2(6257, -44)
-scale = Vector2(0.2, 0.2)
-item_name = "Axe"
-item_icon = ExtResource("16_7xrtd")
-
 [node name="StickItem" parent="." instance=ExtResource("14_otm4a")]
-position = Vector2(6375, -42)
+position = Vector2(6373, -40)
+scale = Vector2(0.2, 0.2)
+item_name = "Stick"
+item_icon = ExtResource("17_fy513")
+
+[node name="StickItem2" parent="." instance=ExtResource("14_otm4a")]
+position = Vector2(6097, -41)
 scale = Vector2(0.2, 0.2)
 item_name = "Stick"
 item_icon = ExtResource("17_fy513")
@@ -587,18 +586,18 @@ position = Vector2(11573, -71)
 countdown_time = 5.0
 unlock_level = "Level1"
 
-[node name="BananaTree" type="Sprite2D" parent="."]
+[node name="EXZone" type="Sprite2D" parent="."]
 modulate = Color(0.581033, 0.581033, 0.581033, 1)
 z_index = -1
 position = Vector2(11421, -231)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("12_pfcga")
 
-[node name="BananaTree2" type="Sprite2D" parent="BananaTree"]
+[node name="BananaTree2" type="Sprite2D" parent="EXZone"]
 position = Vector2(717.5, 5)
 texture = ExtResource("12_pfcga")
 
-[node name="Bush1" type="Sprite2D" parent="BananaTree"]
+[node name="Bush1" type="Sprite2D" parent="EXZone"]
 z_index = -1
 position = Vector2(387.5, 342.5)
 scale = Vector2(0.25, 0.25)
