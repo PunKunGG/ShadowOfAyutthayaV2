@@ -36,6 +36,7 @@ position = Vector2(806, -17)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TakedownDetection"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_oumj0")
+debug_color = Color(0.990868, 0, 0.272927, 0.42)
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(213, -712)
@@ -43,8 +44,10 @@ position = Vector2(213, -712)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_d1qw7")
+debug_color = Color(0.425841, 0.459473, 1, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(229, -888)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_i6fcm")
+debug_color = Color(0.41888, 0.461975, 1, 0.42)

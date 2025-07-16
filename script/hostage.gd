@@ -1,5 +1,9 @@
 extends Area2D
 
+signal start_rescue
+signal rescued
+signal cancel_rescue
+
 @onready var label := $Label
 @onready var rescue_loop_sound := $RescueLoopSound
 @onready var rescue_me := $RescueMe
@@ -10,6 +14,8 @@ const RESCUE_TIME := 5.0
 var player_in_range := false
 var rescue_timer := 0.0
 var is_rescued := false
+var has_started := false  # ✅ ป้องกันไม่ให้ signal ถูกส่งซ้ำ
+var has_started_rescue := false 
 
 func _ready():
 	label.visible = false
@@ -19,6 +25,10 @@ func _process(delta):
 		return
 	
 	if Input.is_action_pressed("interact"):
+		if not has_started_rescue:
+			has_started_rescue = true
+			emit_signal("start_rescue")
+		
 		rescue_me.stop()
 		rescue_timer += delta
 		label.text = "Helping... (%.1f)" % (RESCUE_TIME - rescue_timer)
@@ -26,9 +36,13 @@ func _process(delta):
 		if not rescue_loop_sound.playing:
 			rescue_loop_sound.play()
 		
-		if rescue_timer >= RESCUE_TIME:
+		if not has_started and rescue_timer >= RESCUE_TIME:
+			emit_signal("rescued") # ✅ ส่งแค่ตอนช่วยเสร็จ
 			complete_rescue()
 	else:
+		if has_started_rescue:
+			has_started_rescue = false
+			emit_signal("cancel_rescue")
 		if rescue_loop_sound.playing:
 			rescue_loop_sound.stop()
 		rescue_timer = 0
@@ -36,6 +50,7 @@ func _process(delta):
 
 func complete_rescue():
 	is_rescued = true
+	emit_signal("rescued")
 	label.text = "✅ Rescued!!"
 	
 	rescue_loop_sound.stop()
@@ -59,6 +74,7 @@ func _on_body_entered(body):
 		rescue_me.play()
 		player_in_range = true
 		label.visible = true
+		body.set_hostage_target(self)
 		print("🧍‍♂️ ผู้เล่นเข้ามาใกล้ตัวประกัน")
 		
 func _on_body_exited(body):
@@ -67,4 +83,5 @@ func _on_body_exited(body):
 		player_in_range = false
 		label.visible = false
 		rescue_timer = 0
+		body.set_hostage_target(null)
 		print("🚶‍♂️ ผู้เล่นออกห่างตัวประกัน")

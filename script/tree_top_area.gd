@@ -24,8 +24,13 @@ func _process(_delta):
 		print("🗡️ กระโดดลอบสังหารจากต้นไม้")
 		if target_enemy and target_enemy.has_method("insta_kill"):
 			target_enemy.insta_kill()
-			var land_y_offset := -16  # ยืนสูงกว่าพื้นนิด ให้ไม่จม
+			var land_y_offset := -16
 			player_node.global_position = target_enemy.global_position + Vector2(-32, land_y_offset)
+
+			# ✅ ให้ player เล่น animation
+			if player_node.has_method("play_tree_takedown"):
+				player_node.play_tree_takedown()
+
 			label.visible = false
 			can_jump_takedown = false
 

@@ -48,6 +48,9 @@ var is_knockback := false
 var knockback_velocity := Vector2.ZERO
 var knockback_timer := 0.0
 
+#Hostage
+var hostage_target : Area2D = null
+
 func _ready():
 	original_attack_x = attack_area.position.x
 	
@@ -126,7 +129,12 @@ func _physics_process(delta):
 	else:
 		if is_landing:
 			return  # 🔒 ล็อกไว้ไม่ให้อนิเมชันอื่นเล่นทับ
-
+		
+		#Lock Hostage_Help
+		if anim.animation == "hostage_help" and anim.is_playing():
+			print("⛔ กำลังช่วยตัวประกันอยู่ → หยุดควบคุม")
+			return
+		
 		if not is_on_floor():
 			if velocity.y < 0:
 				if anim.animation != "jump":
@@ -139,7 +147,10 @@ func _physics_process(delta):
 			is_landing = true
 			anim.play("contact_floor")
 		elif direction != 0:
-			anim.play("walk")
+			if is_running:
+				anim.play("run")
+			else:
+				anim.play("walk")
 		else:
 			anim.play("idle")
 
@@ -196,7 +207,7 @@ func _on_sound_area_entered(body):
 func die():
 	is_dead = true
 	anim.play("dead")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file("res://game_over.tscn")
 
 func _on_animated_sprite_2d_animation_finished():
@@ -215,7 +226,7 @@ func _on_animated_sprite_2d_animation_finished():
 		else:
 			anim.play("fall")
 	
-	if anim.animation == "execute_hand" or anim.animation == "prepare":
+	if anim.animation == "execute_hand" or anim.animation == "prepare" or anim.animation == "tree_takedown":
 		if not is_on_floor():
 			anim.play("fall")
 		elif velocity.x == 0:
@@ -247,9 +258,13 @@ func _on_qte_result(success: bool):
 func _on_takedown_complete():
 	if current_takedown_target:
 		current_takedown_target.insta_kill()  # ⚡ ตายทันที
-
-	anim.play("execute_hand")
-	await wait_for_animation("execute_hand")
+	
+	if not is_on_floor():
+		anim.play("tree_takedown")
+		await  wait_for_animation("tree_takedown")
+	else:
+		anim.play("execute_hand")
+		await wait_for_animation("execute_hand")
 
 	is_control_locked = false
 	is_executing = false
@@ -356,3 +371,72 @@ func receive_damage(amount: int, from_pos: Vector2):
 
 	if current_hp <= 0:
 		die()
+
+func play_tree_takedown():
+	print("🎬 Playing execute_tree")
+	is_control_locked = true
+	is_executing = true
+
+	anim.play("tree_takedown")
+	await wait_for_animation("tree_takedown")
+
+	is_control_locked = false
+	is_executing = false
+
+	# กลับ animation ปกติ
+	if is_on_floor():
+		if velocity.x == 0:
+			anim.play("idle")
+		else:
+			anim.play("walk")
+	else:
+		anim.play("fall")
+
+func set_hostage_target(hostage: Area2D):
+	if hostage_target:
+		if hostage_target.is_connected("start_rescue", _on_start_rescue):
+			hostage_target.disconnect("start_rescue", _on_start_rescue)
+		if hostage_target.is_connected("rescued", _on_rescue_done):
+			hostage_target.disconnect("rescued", _on_rescue_done)
+		if hostage_target.is_connected("cancel_rescue", _on_rescue_cancelled):
+			hostage_target.disconnect("cancel_rescue", _on_rescue_cancelled)
+
+	hostage_target = hostage
+
+	if hostage_target:
+		if not hostage_target.is_connected("start_rescue", _on_start_rescue):
+			hostage_target.connect("start_rescue", _on_start_rescue)
+		if not hostage_target.is_connected("rescued", _on_rescue_done):
+			hostage_target.connect("rescued", _on_rescue_done)
+		if not hostage_target.is_connected("cancel_rescue", _on_rescue_cancelled):
+			hostage_target.connect("cancel_rescue", _on_rescue_cancelled)
+
+func _on_start_rescue():
+	if not is_control_locked and anim.animation != "hostage_help":
+		is_control_locked = true
+		anim.play("hostage_help")
+
+func _on_rescue_done():
+	is_control_locked = false
+	
+	# ✅ กลับไปเล่น animation ปกติ
+	if is_on_floor():
+		if velocity.x == 0:
+			anim.play("idle")
+		else:
+			anim.play("walk")
+	else:
+		anim.play("fall")
+
+func _on_rescue_cancelled():
+	if is_control_locked:
+		is_control_locked = false
+
+		# กลับไปเล่น animation ปกติ
+		if is_on_floor():
+			if velocity.x == 0:
+				anim.play("idle")
+			else:
+				anim.play("walk")
+		else:
+			anim.play("fall")

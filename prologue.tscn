@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://gpoq6is4a6wj"]
+[gd_scene load_steps=27 format=3 uid="uid://gpoq6is4a6wj"]
 
 [ext_resource type="Script" uid="uid://ctiinyt7gq360" path="res://script/prologue.gd" id="1_01crl"]
 [ext_resource type="Texture2D" uid="uid://ddib3o1neqdbv" path="res://tilemap/terrain_grass_block_top_left.PNG" id="1_mx85p"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://yogap3ahmaoo" path="res://tree_top_area.tscn" id="19_7xrtd"]
 [ext_resource type="PackedScene" uid="uid://bn00c8eg72ki6" path="res://requirement_action_point.tscn" id="20_fy513"]
 [ext_resource type="PackedScene" uid="uid://jtw13unb6k78" path="res://exfiltration_zone.tscn" id="21_8s77n"]
+[ext_resource type="PackedScene" uid="uid://clsu65tj14i17" path="res://hostage.tscn" id="22_xag2t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ohvg6"]
 texture = ExtResource("1_mx85p")
@@ -99,7 +100,7 @@ layer_0/tile_data = PackedInt32Array(131057, 196609, 3, 196593, 196609, 3, 65521
 [node name="InventoryUI" parent="." instance=ExtResource("5_6hioj")]
 
 [node name="Player" parent="." instance=ExtResource("6_rwpj4")]
-position = Vector2(-262, -100)
+position = Vector2(-231, -100)
 scale = Vector2(0.5, 0.5)
 speed = 200
 run_speed = 350
@@ -602,6 +603,10 @@ z_index = -1
 position = Vector2(387.5, 342.5)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("11_3cu1f")
+
+[node name="Hostage" parent="." instance=ExtResource("22_xag2t")]
+position = Vector2(329, -79)
+scale = Vector2(0.6, 0.6)
 
 [connection signal="body_entered" from="JumpTrigger" to="JumpTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="BushTrigger" to="BushTrigger" method="_on_body_entered"]
