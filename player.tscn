@@ -1,4 +1,4 @@
-[gd_scene load_steps=225 format=3 uid="uid://0w05xcojxswa"]
+[gd_scene load_steps=226 format=3 uid="uid://0w05xcojxswa"]
 
 [ext_resource type="Script" uid="uid://qx64p0kse4b" path="res://script/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dvxpvi7omgneq" path="res://assets/player/playerV2/AttackCombo.png" id="2_ivps1"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://cl2f4dtdcie5q" path="res://Sound/GodOfFun.MP3" id="12_ivps1"]
 [ext_resource type="AudioStream" uid="uid://d4kffi5mvx8od" path="res://Sound/walk_footstep.mp3" id="13_bwjto"]
 [ext_resource type="AudioStream" uid="uid://drssjvr4xlb47" path="res://Sound/run_footstep.mp3" id="14_606se"]
+[ext_resource type="AudioStream" uid="uid://dmxbnpe6saki1" path="res://Sound/domain-expansion-sukuna.mp3" id="18_q13i1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u1c27"]
 atlas = ExtResource("2_ivps1")
@@ -1581,5 +1582,10 @@ parameters/looping = true
 stream = ExtResource("14_606se")
 volume_db = 5.0
 parameters/looping = true
+
+[node name="channel_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_q13i1")
+volume_db = -5.0
+pitch_scale = 1.5
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

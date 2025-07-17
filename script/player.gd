@@ -51,6 +51,10 @@ var knockback_timer := 0.0
 #Hostage
 var hostage_target : Area2D = null
 
+#Malevolent
+var y_hold_timer := 0.0
+var is_channeling := false
+
 func _ready():
 	original_attack_x = attack_area.position.x
 	
@@ -163,6 +167,16 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
+	
+	if not is_channeling and Input.is_action_pressed("shrine_summon"):
+		y_hold_timer += delta
+		if y_hold_timer >= 3.0:
+			y_hold_timer = 0.0
+			is_channeling = true
+			_start_shrine_cutscene()
+	else:
+		y_hold_timer = 0.0
+
 	
 	move_and_slide()
 
@@ -444,3 +458,27 @@ func _on_rescue_cancelled():
 				anim.play("walk")
 		else:
 			anim.play("fall")
+
+func _start_shrine_cutscene():
+	is_control_locked = true
+	$channel_sound.play()  # เล่นเสียงกางอาณาเขต
+	
+	await get_tree().create_timer(1.0).timeout  # รอเสียงสั้นๆ (หรือจะลบก็ได้)
+
+	_spawn_shrine()
+	is_control_locked = false
+	is_channeling = false
+
+func _spawn_shrine():
+	var shrine_scene = preload("res://shrine_area.tscn")
+	var shrine = shrine_scene.instantiate()
+
+	# ใส่ตำแหน่งศาลเจ้าด้านหลังผู้เล่น
+	var offset = Vector2(0, -80) if anim.flip_h else Vector2(0, -80)
+	var shrine_pos = global_position + offset
+	shrine.global_position = shrine_pos
+
+	# เปลี่ยนจาก current_scene → parent เพื่อให้แน่ใจว่าอยู่ใน scene เดียวกัน
+	get_parent().add_child(shrine)
+	shrine.z_index = self.z_index - 1
+	print("📦 ศาลเจ้าถูกอัญเชิญที่", shrine.global_position)

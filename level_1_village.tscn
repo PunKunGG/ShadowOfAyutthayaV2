@@ -127,7 +127,6 @@ texture = ExtResource("5_0o8ma")
 modulate = Color(0.585062, 0.585062, 0.585062, 1)
 z_index = -3
 position = Vector2(-525.714, -148.571)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="G3" type="Sprite2D" parent="."]
@@ -141,7 +140,6 @@ texture = ExtResource("5_0o8ma")
 modulate = Color(0.589096, 0.589096, 0.589096, 1)
 z_index = -3
 position = Vector2(750, -138.571)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="G4" type="Sprite2D" parent="."]
@@ -155,21 +153,18 @@ texture = ExtResource("5_0o8ma")
 modulate = Color(0.585062, 0.585062, 0.585062, 1)
 z_index = -3
 position = Vector2(162.857, -144.286)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree2" type="Sprite2D" parent="G4"]
 modulate = Color(0.585062, 0.585062, 0.585062, 1)
 z_index = -4
 position = Vector2(511.428, -111.429)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree3" type="Sprite2D" parent="G4"]
 modulate = Color(0.585062, 0.585062, 0.585062, 1)
 z_index = -3
 position = Vector2(811.428, -111.429)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="Bush1" type="Sprite2D" parent="G4"]
@@ -195,21 +190,18 @@ texture = ExtResource("5_0o8ma")
 modulate = Color(0.589096, 0.589096, 0.589096, 1)
 z_index = -3
 position = Vector2(-35.7143, -142.857)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree3" type="Sprite2D" parent="G5"]
 modulate = Color(0.589096, 0.589096, 0.589096, 1)
 z_index = -4
 position = Vector2(-398.571, -120)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree4" type="Sprite2D" parent="G5"]
 modulate = Color(0.589096, 0.589096, 0.589096, 1)
 z_index = -4
 position = Vector2(417.143, -124.286)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="Bush2" type="Sprite2D" parent="G5"]
@@ -277,13 +269,11 @@ texture = ExtResource("6_mcyj2")
 [node name="BananaTree2" type="Sprite2D" parent="G7"]
 z_index = -1
 position = Vector2(518.75, 0)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree3" type="Sprite2D" parent="G7"]
 z_index = -1
 position = Vector2(1228.75, -6.25)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mcyj2")
 
 [node name="BananaTree4" type="Sprite2D" parent="G7/BananaTree3"]

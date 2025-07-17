@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://3bcadggfgvrn"]
+
+[ext_resource type="Script" uid="uid://cvi8w676oo7dt" path="res://script/shrine_area.gd" id="1_6jd6t"]
+[ext_resource type="Texture2D" uid="uid://egdq8j016ien" path="res://assets/MalevolentShrine/MalevolentShrine-Real.png" id="2_dk7oj"]
+[ext_resource type="AudioStream" uid="uid://pdt4dmt1xymr" path="res://Sound/slash-sword.mp3" id="3_dk7oj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lall3"]
+radius = 720.003
+
+[node name="ShrineArea" type="Area2D" groups=["shrine"]]
+script = ExtResource("1_6jd6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dk7oj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lall3")
+debug_color = Color(0.595722, 0.601184, 0.616153, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SlashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dk7oj")
+volume_db = -10.0
+pitch_scale = 6.0
+parameters/looping = true

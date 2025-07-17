@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal takedown_success
 
 @export var speed := 30
-@export var max_hp := 3
+@export var max_hp := 20
 @export var knockback_strength := 300.0
 @export var knockback_duration := 0.2
 @export var gravity := 1200.0
