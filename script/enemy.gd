@@ -116,7 +116,7 @@ func _physics_process(delta):
 			if player_ref:
 				var direction_to_player = sign(player_ref.global_position.x - global_position.x)
 				direction = direction_to_player
-				velocity.x = direction * speed * 8.0
+				velocity.x = direction * speed * 11.0
 			else:
 				# ไล่ลมไปทิศที่ได้ยินเสียงสักพัก
 				velocity.x = direction * speed * 3.0

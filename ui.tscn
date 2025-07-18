@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccenvymfqbktr"]
+
+[ext_resource type="Script" uid="uid://b8cnwbx80mt3t" path="res://script/ui.gd" id="1_m6e0p"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="2_27fn8"]
+[ext_resource type="Texture2D" uid="uid://gbeqo0j5nfs5" path="res://assets/UI/Obj_List.png" id="2_nltto"]
+[ext_resource type="Texture2D" uid="uid://dk0h261rb4p55" path="res://assets/UI/MC_facetopleft.png" id="3_27fn8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27fn8"]
+bg_color = Color(1, 0.0794126, 0.131695, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nltto"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibotj"]
+bg_color = Color(0.335683, 0.593078, 1, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_m6e0p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 514.0
+offset_bottom = 76.0
+
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_m6e0p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_27fn8")
+value = 100.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_nltto")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ibotj")
+value = 100.0
+show_percentage = false
+
+[node name="ObjList" type="Sprite2D" parent="."]
+position = Vector2(899, 277)
+scale = Vector2(0.442708, 0.842593)
+texture = ExtResource("2_nltto")
+
+[node name="ObjectiveList" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -169.0
+offset_top = -7.0
+offset_right = -12.0
+offset_bottom = 188.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="ObjectiveList"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_27fn8")
+theme_override_font_sizes/font_size = 60
+text = "Objective"
+horizontal_alignment = 1
+
+[node name="RopeLabel" type="Label" parent="ObjectiveList"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_27fn8")
+theme_override_font_sizes/font_size = 35
+text = "☐ เก็บเชือก"
+
+[node name="LadderLabel" type="Label" parent="ObjectiveList"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_27fn8")
+theme_override_font_sizes/font_size = 35
+text = "☐ เก็บบันได"
+
+[node name="McFacetopleft" type="Sprite2D" parent="ObjectiveList"]
+position = Vector2(-418, 323)
+texture = ExtResource("3_27fn8")

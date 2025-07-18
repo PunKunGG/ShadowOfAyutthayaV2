@@ -39,15 +39,9 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 478.0
-offset_top = 150.0
+offset_top = 163.0
 offset_right = 598.0
-offset_bottom = 464.0
-
-[node name="Button_Prologue" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_apu6u")
-theme_override_font_sizes/font_size = 35
-text = "บทนำ"
+offset_bottom = 454.0
 
 [node name="Button_Level1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -81,10 +75,10 @@ text = "ด่านที่ 5"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 453.0
-offset_top = 527.0
-offset_right = 621.0
-offset_bottom = 582.0
+offset_left = 454.0
+offset_top = 496.0
+offset_right = 622.0
+offset_bottom = 551.0
 theme_override_fonts/font = ExtResource("3_apu6u")
 theme_override_font_sizes/font_size = 35
 text = "กลับสู่เมนูหลัก"
@@ -93,7 +87,6 @@ text = "กลับสู่เมนูหลัก"
 stream = ExtResource("4_bv7n5")
 volume_db = 10.0
 
-[connection signal="pressed" from="VBoxContainer/Button_Prologue" to="." method="_on_Button_Prologue_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button_Level1" to="." method="_on_Button_Level1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button_Level2" to="." method="_on_Button_Level2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button_Level3" to="." method="_on_Button_Level3_pressed"]

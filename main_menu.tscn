@@ -61,16 +61,6 @@ text = "คณะผู้จัดทำ"
 stream = ExtResource("4_glbon")
 volume_db = 10.0
 
-[node name="Test" type="Button" parent="."]
-layout_mode = 0
-offset_left = 462.0
-offset_top = 455.0
-offset_right = 665.0
-offset_bottom = 518.0
-theme_override_fonts/font = ExtResource("3_jix8l")
-theme_override_font_sizes/font_size = 40
-text = "อัปเกรดตัวละคร"
-
 [node name="HTP" type="Button" parent="."]
 layout_mode = 0
 offset_left = 927.0
@@ -85,5 +75,4 @@ text = "วิธีเล่น"
 [connection signal="pressed" from="VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Credit" to="." method="_on_credit_button_pressed"]
-[connection signal="pressed" from="Test" to="." method="_on_test_pressed"]
 [connection signal="pressed" from="HTP" to="." method="_on_htp_pressed"]

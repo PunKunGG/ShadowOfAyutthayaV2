@@ -30,7 +30,7 @@ func _process(_delta):
 		hide_cooldown = COOLDOWN_DURATION
 
 		if is_trap and player_node.is_hidden:
-			var damage := randi_range(1, 3)
+			var damage := randi_range(7, 10)
 			player_node.current_hp -= damage
 			print("💥 พุ่มหลอกโจมตี! เสีย HP:", damage)
 

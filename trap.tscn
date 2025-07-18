@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2qtw2vs7tkbw"]
+
+[ext_resource type="Script" uid="uid://dbs86h77ylamb" path="res://script/trap.gd" id="1_w2pp3"]
+[ext_resource type="Texture2D" uid="uid://cmmmhew5ounh4" path="res://assets/prop/spikeWEED-removebg-preview.png" id="2_w2pp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2pp3"]
+size = Vector2(162.6, 23.8)
+
+[node name="Trap" type="Area2D"]
+script = ExtResource("1_w2pp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -67)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_w2pp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_w2pp3")
+
+[node name="DamageTimer" type="Timer" parent="."]

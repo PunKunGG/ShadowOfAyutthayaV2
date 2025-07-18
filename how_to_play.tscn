@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bptg2ee3jgai6"]
 
-[ext_resource type="Texture2D" uid="uid://xd44o5xy35s6" path="res://assets/Menu/Something2.png" id="1_g0446"]
 [ext_resource type="Script" uid="uid://cqqe7hebfnakb" path="res://script/how_to_play.gd" id="1_pg7y5"]
+[ext_resource type="Texture2D" uid="uid://bm1pv3ti0ctyh" path="res://assets/Menu/MainMenu.png" id="2_pg7y5"]
 [ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="3_pg7y5"]
 [ext_resource type="AudioStream" uid="uid://c61le5kljvqoy" path="res://Sound/Click.MP3" id="4_3hqcg"]
 
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_g0446")
+texture = ExtResource("2_pg7y5")
 expand_mode = 1
 
 [node name="Head" type="Label" parent="."]

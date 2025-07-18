@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://lev3wpa8du4p"]
+
+[ext_resource type="Texture2D" uid="uid://bm1pv3ti0ctyh" path="res://assets/Menu/MainMenu.png" id="1_htrc2"]
+[ext_resource type="FontFile" uid="uid://bowetpmlda58l" path="res://font/JS Wansika Italic.ttf" id="1_mggpi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htrc2"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_weff3"]
+bg_color = Color(0.0614779, 0.821837, 7.70092e-07, 1)
+
+[node name="LoadingScreen" type="CanvasLayer"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Something2" type="Sprite2D" parent="Background"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+position = Vector2(574.5, 323.5)
+scale = Vector2(0.751953, 0.635742)
+texture = ExtResource("1_htrc2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 413.0
+offset_top = 208.0
+offset_right = 704.0
+offset_bottom = 316.0
+theme_override_fonts/font = ExtResource("1_mggpi")
+theme_override_font_sizes/font_size = 80
+text = "กำลังโหลด..."
+
+[node name="LoadingAnim" type="ProgressBar" parent="."]
+offset_left = 365.0
+offset_top = 317.0
+offset_right = 758.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("1_mggpi")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_htrc2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_weff3")

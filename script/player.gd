@@ -6,7 +6,7 @@ signal  sound_alert_triggered(enemy: Node)
 @export var run_speed := 400
 @export var jump_velocity := -650
 @export var gravity := 1200
-@export var attack_damage := 1
+@export var attack_damage := 5
 
 @onready var qte_popup = QteManager.QTEPopup
 @onready var anim := $AnimatedSprite2D
@@ -24,8 +24,10 @@ const FALL_DEATH_Y = 1000.0
 var is_running := false
 
 #Health
-var max_hp := 3
-var current_hp := 3
+var max_hp := 10
+var max_stamina := 500
+var current_hp := 10
+var current_stamina := max_stamina
 var is_hurt := false
 
 var is_dead = false
@@ -65,7 +67,9 @@ func _ready():
 		QteManager.QTEPopup.submitted.connect(_on_qte_result)
 	else:
 		print("❌ QTEPopup ไม่พบใน _ready()")
-		
+
+	await get_tree().process_frame  # ✅ เพิ่มบรรทัดนี้ เพื่อรอให้ UiManager โหลด UI ก่อน
+	
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 
 func _physics_process(delta):
@@ -91,32 +95,62 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Get input
+	var run_pressed = Input.is_action_pressed("run")
 	var direction := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
-	is_running = Input.is_action_pressed("run")
+	# ✅ ตัดสินใจว่าจะลด stamina ไหม
+	if run_pressed and direction != 0:
+		current_stamina -= 20 * delta
+		current_stamina = max(current_stamina, 0)
+
+	# ✅ เช็คใหม่หลังลด
+	if run_pressed and current_stamina > 0:
+		is_running = true
+	else:
+		is_running = false
+
+	# ถ้า stamina หมด → กลับไปใช้ความเร็วเดิน
 	var move_speed = run_speed if is_running else speed
 	
 	if not is_knockback:
 		velocity.x = direction * move_speed
+		
+	# ลดพลังงานขณะวิ่ง
+	if is_running and direction != 0:
+		current_stamina -= 20 * delta
+		current_stamina = max(current_stamina, 0)
+		UiManager.update_stamina_bar(current_stamina, max_stamina)
+	
+	# รีเจนเฉพาะเมื่อไม่ได้วิ่ง หรือเดินเฉยๆ
+	if not run_pressed or current_stamina <= 0 or direction == 0:
+		current_stamina += 80 * delta
+		current_stamina = min(current_stamina, max_stamina)
+		UiManager.update_stamina_bar(current_stamina, max_stamina)
+
 	
 	# ปรับระยะตรวจจับเสียงตามสถานะวิ่ง
 	if direction != 0:
 		sound_area.monitoring = true
 		sound_shape.shape.radius = 400.0 if is_running else 120.0
-		
-		if is_running:
-			if not footstep_run.playing:
-				footstep_walk.stop()
-				footstep_run.play()
+
+		if is_on_floor():
+			if is_running:
+				if not footstep_run.playing:
+					footstep_walk.stop()
+					footstep_run.play()
+			else:
+				if not footstep_walk.playing:
+					footstep_run.stop()
+					footstep_walk.play()
 		else:
-			if not footstep_walk.playing:
-				footstep_run.stop()
-				footstep_walk.play()
-		
+			footstep_run.stop()
+			footstep_walk.stop()
 	else:
 		sound_area.monitoring = false
-		footstep_walk.stop()
 		footstep_run.stop()
+		footstep_walk.stop()
+
+
 	# Jump
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_velocity
@@ -205,6 +239,12 @@ func _input(event):
 	if event.is_action_pressed("pickup") and pickup_target:
 		print("🎒 กำลังเก็บ: ", pickup_target.item_name)
 		Inventory.add_item(pickup_target.item_name)
+		
+		if pickup_target.item_name == "Rope":
+			UiManager.mark_rope_collected()
+		elif pickup_target.item_name == "Ladder":
+			UiManager.mark_ladder_collected()
+		
 		pickup_target.queue_free()
 		pickup_target = null
 	
@@ -217,6 +257,16 @@ func _attack():
 		elif body.is_in_group("cage"):  # ✅ ตีกรงได้
 			if body.has_method("take_hit"):
 				body.take_hit()
+
+func take_damage(amount: int):
+	if is_dead or is_hurt:
+		return
+	current_hp -= amount
+	is_hurt = true
+	UiManager.update_health_bar(current_hp, max_hp)
+	print("💥 โดนกับดัก: เหลือ HP", current_hp)
+	if current_hp <= 0:
+		die()
 
 func _on_sound_area_entered(body):
 	if body.is_in_group("enemy") and not body.is_alerted():
@@ -377,6 +427,8 @@ func receive_damage(amount: int, from_pos: Vector2):
 	current_hp -= amount
 	is_hurt = true
 	print("โดนโจมตี!! - HP:", current_hp)
+	
+	UiManager.update_health_bar(current_hp, max_hp)
 	
 	$hurt.play()
 	anim.play("damaged")

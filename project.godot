@@ -24,6 +24,8 @@ PlayerStat="*res://script/player_stat.gd"
 Inventory="*res://script/inventory.gd"
 QteManager="*res://script/qte_manager.gd"
 TutorialManager="*res://script/TutorialManager.gd"
+UiManager="*res://script/UIManager.gd"
+ScreenLoader="*res://script/ScreenLoader.gd"
 
 [display]
 

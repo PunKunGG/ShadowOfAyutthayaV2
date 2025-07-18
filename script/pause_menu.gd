@@ -14,11 +14,13 @@ func _process(_delta):
 			_pause_game()
 
 func _pause_game():
+	UiManager.hide_ui()
 	get_tree().paused = true
 	$Label.visible = true
 	panel.visible = true
 
 func _resume_game():
+	UiManager.show_ui()
 	get_tree().paused = false
 	$Label.visible = false
 	panel.visible = false
@@ -32,7 +34,7 @@ func _on_main_menu_button_pressed():
 	$Click.play()
 	await get_tree().create_timer(0.3).timeout
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	ScreenLoader.load_scene("res://main_menu.tscn")
 
 func _on_setting_button_pressed():
 	$Click.play()

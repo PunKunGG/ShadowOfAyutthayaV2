@@ -1,8 +1,8 @@
 extends Area2D
 
 @export var damage_tick_time := 0.5
-@export var min_dmg := 1
-@export var max_dmg := 2
+@export var min_dmg := 3
+@export var max_dmg := 5
 
 
 func _ready():

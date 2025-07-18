@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxtnr4vtn7qqb" path="res://assets/prop/big_tree.PNG" id="2_oumj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oumj0"]
-size = Vector2(118.2, 20)
+size = Vector2(118.2, 106.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1qw7"]
 size = Vector2(76.2, 20)
@@ -31,7 +31,7 @@ theme_override_font_sizes/font_size = 30
 text = "Press F for Takedown"
 
 [node name="TakedownDetection" type="Area2D" parent="."]
-position = Vector2(806, -17)
+position = Vector2(771, -276)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TakedownDetection"]
 scale = Vector2(5, 5)
