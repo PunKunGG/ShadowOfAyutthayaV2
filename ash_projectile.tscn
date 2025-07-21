@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwwat5tqfknjt"]
+
+[ext_resource type="Texture2D" uid="uid://dorl2yp41nyvb" path="res://assets/prop/Ash.png" id="1_mvc4f"]
+[ext_resource type="Script" uid="uid://dipgubnnp1i7a" path="res://script/ash_projectile.gd" id="1_w0iji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0iji"]
+atlas = ExtResource("1_mvc4f")
+region = Rect2(0, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7u1d"]
+atlas = ExtResource("1_mvc4f")
+region = Rect2(2048, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8nxn"]
+atlas = ExtResource("1_mvc4f")
+region = Rect2(0, 2048, 2048, 2048)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijamj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0iji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7u1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8nxn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.5
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcqrs"]
+radius = 130.419
+
+[node name="AshProjectile" type="Area2D"]
+script = ExtResource("1_w0iji")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(72, -78)
+sprite_frames = SubResource("SpriteFrames_ijamj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kcqrs")
+
+[node name="Timer" type="Timer" parent="."]

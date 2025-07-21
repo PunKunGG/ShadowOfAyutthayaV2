@@ -63,6 +63,12 @@ var qte_questions = [
 	{"question": "___พุทธายะ", "answer": "นะโม"}
 ]
 
+#Light
+var is_in_light := false
+var normal_vision_range := 1400.0
+var boosted_vision_range := 2000.0
+var current_vision_range := normal_vision_range
+
 func _ready():
 	origin_x = global_position.x
 	
@@ -94,6 +100,13 @@ func _ready():
 	attack_area.body_exited.connect(_on_attack_area_exited)
 
 func _physics_process(delta):
+	current_vision_range = boosted_vision_range if is_in_light else normal_vision_range
+	
+	var shape = vision_area.get_node("CollisionShape2D").shape
+	if shape is RectangleShape2D:
+		shape.extents.x = current_vision_range / 2.0
+		vision_area.position.x = direction * (current_vision_range / 2.0)
+	
 	if is_dead or is_pointing:
 		return
 	

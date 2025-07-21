@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7fbpww3po65a"]
+
+[ext_resource type="Script" uid="uid://b5b8liq2ksf3l" path="res://script/torch.gd" id="1_2o2xl"]
+[ext_resource type="Script" uid="uid://douigqwpydx5r" path="res://script/torch_area.gd" id="1_b2yp5"]
+[ext_resource type="Texture2D" uid="uid://fxcm8eofjfed" path="res://assets/prop/Torch.png" id="1_ujbxd"]
+[ext_resource type="FontFile" uid="uid://bnlkwk86tx4w1" path="res://font/Bruce Forever.ttf" id="3_hnarx"]
+[ext_resource type="Script" uid="uid://c8ft2dy8xqkks" path="res://script/ash_trigger_area.gd" id="4_wv8vp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2yp5"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(0, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnarx"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(2048, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o2xl"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(4096, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv8vp"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(0, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2mgh"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(2048, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgcae"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(4096, 2048, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oedxg"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(0, 4096, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6wqq"]
+atlas = ExtResource("1_ujbxd")
+region = Rect2(2048, 4096, 2048, 2048)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qakme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2yp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnarx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o2xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv8vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2mgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgcae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oedxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6wqq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6f3yh"]
+radius = 873.578
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2yp5"]
+radius = 162.117
+
+[node name="Torch" type="Node2D" groups=["torch"]]
+script = ExtResource("1_2o2xl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qakme")
+autoplay = "default"
+frame_progress = 0.521217
+
+[node name="TorchArea" type="Area2D" parent="."]
+script = ExtResource("1_b2yp5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TorchArea"]
+shape = SubResource("CircleShape2D_6f3yh")
+
+[node name="AshTriggerArea" type="Area2D" parent="."]
+position = Vector2(-2084, 0)
+script = ExtResource("4_wv8vp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AshTriggerArea"]
+shape = SubResource("CircleShape2D_b2yp5")
+debug_color = Color(0.859902, 0.000676911, 0.875926, 0.42)
+
+[node name="PromptLabel" type="Label" parent="AshTriggerArea"]
+offset_left = -557.0
+offset_top = -924.0
+offset_right = 571.0
+offset_bottom = -763.0
+theme_override_fonts/font = ExtResource("3_hnarx")
+theme_override_font_sizes/font_size = 120
+text = "กด R เพื่อใช้ขี้เถ้าดับไฟ"

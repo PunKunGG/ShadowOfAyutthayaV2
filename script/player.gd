@@ -57,6 +57,9 @@ var hostage_target : Area2D = null
 var y_hold_timer := 0.0
 var is_channeling := false
 
+#DubFi
+var torch_in_range: Node = null
+
 func _ready():
 	original_attack_x = attack_area.position.x
 	
@@ -248,6 +251,34 @@ func _input(event):
 		pickup_target.queue_free()
 		pickup_target = null
 	
+	if event.is_action_pressed("use_ash"):
+		print("กด R แล้ว")
+		if torch_in_range:
+			print("torch_in_range = ", torch_in_range)
+			if torch_in_range.has_method("try_extinguish"):
+				print("✅ มีฟังก์ชัน try_extinguish")
+				if Inventory.has_item("AshPowder"):
+					Inventory.use_item("AshPowder")
+					print("🎯 มีขี้เถ้า → ยิงขี้เถ้า")
+					
+					# โหลดและยิงก้อนขี้เถ้า
+					var ash_projectile_scene = preload("res://ash_projectile.tscn")
+					var projectile = ash_projectile_scene.instantiate()
+					projectile.global_position = global_position
+					projectile.target_position = torch_in_range.global_position
+					projectile.torch_node = torch_in_range  # ส่ง torch ไปให้ projectile
+					
+					get_tree().current_scene.add_child(projectile)
+					
+					anim.play("prepare")  # ท่าปา
+				else:
+					print("❌ ไม่มีขี้เถ้า")
+					torch_in_range.show_prompt("ไม่มีขี้เถ้า!")
+			else:
+				print("❌ Node นี้ไม่มีฟังก์ชัน try_extinguish")
+		else:
+			print("❌ torch_in_range = null")
+
 func _attack():
 	for body in attack_area.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
@@ -534,3 +565,7 @@ func _spawn_shrine():
 	get_parent().add_child(shrine)
 	shrine.z_index = self.z_index - 1
 	print("📦 ศาลเจ้าถูกอัญเชิญที่", shrine.global_position)
+
+func show_ash_prompt(_show: bool):
+	if $AshPromptLabel:
+		$AshPromptLabel.visible = _show

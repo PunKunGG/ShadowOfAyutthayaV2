@@ -645,7 +645,7 @@ size = Vector2(306, 996)
 size = Vector2(290, 1014.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epg4t"]
-size = Vector2(1462.19, 150)
+size = Vector2(1460, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yqyl"]
 size = Vector2(163.5, 271)
@@ -688,6 +688,7 @@ position = Vector2(-810, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 shape = SubResource("RectangleShape2D_epg4t")
+debug_color = Color(0.975968, 0.0647559, 0.360487, 0.42)
 
 [node name="AlertSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_3yqyl")
@@ -697,6 +698,7 @@ position = Vector2(-287, -233)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("RectangleShape2D_3yqyl")
+debug_color = Color(0, 0.530694, 0.988529, 0.42)
 
 [node name="YouCanSeeMe" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hb8ge")

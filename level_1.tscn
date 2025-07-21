@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cwj5b8w4n46j8"]
+[gd_scene load_steps=34 format=4 uid="uid://cwj5b8w4n46j8"]
 
 [ext_resource type="Script" uid="uid://dxg2umxnll67o" path="res://script/level_1.gd" id="1_gjkv5"]
 [ext_resource type="PackedScene" uid="uid://cl2rg2nttphcr" path="res://parallax_lv_1.tscn" id="1_hn12h"]
@@ -18,10 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://yogap3ahmaoo" path="res://tree_top_area.tscn" id="15_ubhxj"]
 [ext_resource type="PackedScene" uid="uid://j4jeu2sgwsgu" path="res://item.tscn" id="16_lhbbi"]
 [ext_resource type="Texture2D" uid="uid://baqc78luhpsgn" path="res://assets/tools/rope_real.PNG" id="17_gjkv5"]
+[ext_resource type="Texture2D" uid="uid://dptrysycg5nco" path="res://assets/tools/ASHPOWDER-removebg-preview.png" id="18_b6mmh"]
 [ext_resource type="Texture2D" uid="uid://trfx8qooauk" path="res://assets/tools/ladder.PNG" id="18_gjkv5"]
 [ext_resource type="Script" uid="uid://3n50injaikxg" path="res://script/walk_trigger.gd" id="20_3qmij"]
 [ext_resource type="PackedScene" uid="uid://6rrvhtvvd055" path="res://bush.tscn" id="21_lfy8a"]
 [ext_resource type="PackedScene" uid="uid://bd4ke0348ct1y" path="res://trap_bush.tscn" id="22_ethxx"]
+[ext_resource type="PackedScene" uid="uid://c7fbpww3po65a" path="res://torch_area.tscn" id="23_duihb"]
 [ext_resource type="PackedScene" uid="uid://ckx5s1lircfn1" path="res://enemy.tscn" id="23_ethxx"]
 [ext_resource type="PackedScene" uid="uid://c2qtw2vs7tkbw" path="res://trap.tscn" id="24_3o2xh"]
 
@@ -310,7 +312,7 @@ tile_set = SubResource("TileSet_3qmij")
 [node name="ParallaxLV1" parent="." instance=ExtResource("1_hn12h")]
 
 [node name="Player" parent="." instance=ExtResource("4_ihfcg")]
-position = Vector2(-167, -100)
+position = Vector2(8398, -101)
 scale = Vector2(0.5, 0.5)
 
 [node name="Group1" type="Sprite2D" parent="."]
@@ -563,6 +565,12 @@ scale = Vector2(0.25, 0.25)
 item_name = "Rope"
 item_icon = ExtResource("17_gjkv5")
 
+[node name="AshPowder" parent="." instance=ExtResource("16_lhbbi")]
+position = Vector2(8148, -47)
+scale = Vector2(0.25, 0.25)
+item_name = "AshPowder"
+item_icon = ExtResource("18_b6mmh")
+
 [node name="Ladder" parent="." instance=ExtResource("16_lhbbi")]
 position = Vector2(12539, -152)
 scale = Vector2(0.25, 0.25)
@@ -604,11 +612,14 @@ patrol_left = -300
 patrol_right = 50
 
 [node name="Enemy3" parent="." instance=ExtResource("23_ethxx")]
-position = Vector2(7598, -116)
+position = Vector2(9594, -113)
 scale = Vector2(0.17, 0.17)
-is_patrolling = false
 patrol_left = -300
 patrol_right = 50
+
+[node name="Torch" parent="." instance=ExtResource("23_duihb")]
+position = Vector2(9173, -112)
+scale = Vector2(0.25, 0.25)
 
 [node name="Step1" type="Area2D" parent="."]
 position = Vector2(-51, -128)
